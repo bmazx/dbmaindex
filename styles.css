@@ -1,15 +1,14 @@
-/* div { */
-/*     border-style: dashed; */
-/*     border-width: 1px; */
-/*     border-color: #f00; */
-/* } */
-
 :root {
     --bg-color: #222222;
     --bg-color2: #444444;
     --fg-color: #eeeeee;
     --hi-color: #005577;
     --hi-color2: #777777;
+
+    --notify-color: #ddddfe;
+
+    --button-hover: #006080;
+    --button-active: #004466;
 
     --shadow-blur: 8px;
     --shadow-spread: 2px;
@@ -40,24 +39,66 @@ body {
     background-image: url("images/winxpwp.jpg");
 }
 
+a {
+    text-decoration: none;
+    color: var(--fg-color);
+}
+
+button {
+    border: none;
+    padding: 0.25rem;
+    text-align: center;
+    text-decoration: none;
+    font-family: proggyClean;
+    font-size: 1rem;
+    background-color: var(--hi-color);
+    color: var(--fg-color);
+}
+
+button:hover {
+    background-color: var(--button-hover);
+}
+
+button:active {
+    background-color: var(--button-active);
+}
+
 .header {
     display: flex;
     justify-content: space-between;
     background-color: var(--bg-color);
-    border-bottom: 1px solid var(--hi-color2);
     box-shadow: 0 4px var(--shadow-blur) var(--shadow-color);
 }
 
-.header p {
-    margin: 0.45rem;
+.header p, .header a {
+    margin: 0;
+    padding: 0.45rem;
+}
+
+.header a:hover {
+    background-color: var(--bg-color2);
 }
 
 .workspaces {
+    display: flex;
+}
 
+.workspaces-sel {
+    background-color: var(--hi-color);
+}
+
+a.workspaces-sel:hover {
+    background-color: var(--hi-color);
+}
+
+.header-title {
+    flex: 1;
+    background-color: var(--hi-color);
 }
 
 .status {
-
+    display: flex;
+    flex-direction: row-reverse;
 }
 
 .viewport {
@@ -88,7 +129,7 @@ body {
     background-color: var(--bg-color);
     box-shadow: 0 4px var(--shadow-blur) var(--shadow-spread) var(--shadow-color);
     border: var(--border-width) solid var(--bg-color2);
-    border-top: 1px solid var(--hi-color2);
+    border-top: 1px solid var(--bg-color2);
 }
 
 .window:hover {
@@ -98,17 +139,37 @@ body {
 }
 
 @keyframes window-jitter {
-    0%   {transform: translate(0, 0);}
-    25%  {transform: translate(-1px, 1.2px);}
-    50%  {transform: translate(-1.8px, 2px);}
-    75%  {transform: translate(-1px, 1.5px);}
-    100% {transform: translate(0, 0);}
+    0%   {translate: 0 0;}
+    25%  {translate: -1px 1.2px;}
+    50%  {translate: -1.8px 2px;}
+    75%  {translate: -1px 1.5px;}
+    100% {translate: 0 0;}
 }
 
 .window-title {
+    display: flex;
+    justify-content: space-between;
     background-color: var(--hi-color);
     padding: 0.1rem;
     box-shadow: 0 -1px 0 0 var(--hi-color2);
+}
+
+.window-title-anim-notify {
+    animation: window-notify 1s linear;
+}
+
+@keyframes window-notify {
+    0%   {background-color: var(--notify-color); color: var(--bg-color)}
+    19%   {background-color: var(--notify-color); color: var(--bg-color)}
+    20%  {background-color: var(--hi-color); color: var(--fg-color)}
+    39%  {background-color: var(--hi-color); color: var(--fg-color)}
+    40%  {background-color: var(--notify-color); color: var(--bg-color)}
+    59%  {background-color: var(--notify-color); color: var(--bg-color)}
+    60%  {background-color: var(--hi-color); color: var(--fg-color)}
+    79%  {background-color: var(--hi-color); color: var(--fg-color)}
+    80% {background-color: var(--notify-color); color: var(--bg-color)}
+    99% {background-color: var(--notify-color); color: var(--bg-color)}
+    100%  {background-color: var(--hi-color); color: var(--fg-color)}
 }
 
 .window-title p::before {
@@ -117,6 +178,16 @@ body {
 
 .window-title p {
     margin: 0;
+}
+
+.window-title-buttons {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.window-title button {
+    padding: 0 4px;
+    background-color: rgba(0, 0, 0, 0.0);
 }
 
 .window-client {

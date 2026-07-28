@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My website</title>
+    <title>dbmaindex</title>
     <meta charset="UTF-8">
-    <meta name="description" content="my website">
+    <meta name="description" content="dbmaindex">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/dbma.png">
@@ -11,58 +11,39 @@
 <body>
 <div class="header">
     <div class="workspaces">
-        <p>dbmaindex</p>
+        <a class="workspaces-sel" href="index.html">dbmaindex</a>
+        <a href="">Projects</a>
+        <a href="">Contact</a>
+        <a href="blog/blog.html">Blog</a>
+        <a href="">About</a>
+    </div>
+    <div class="header-title">
     </div>
     <div class="status">
         <p id="date">status</p>
+        <a href="">:3</a>
     </div>
 </div>
 <div class="viewport">
     <div class="master">
-        <div class="window">
+        <div id="window0" class="window">
             <div class="window-title">
-                <p>Master</p>
+                <p>Welcome</p>
             </div>
             <div class="window-client">
                 <p>Hi, Hello! Welcome to dbmaindex</p>
-                <p>I'm Brian, I like computer graphics, simulation, microcontrollers, and game development. This site shares all of my ideas, projects, notes, or just thoughts I wanted to write somewhere.</p>
+                <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
+                        <p>don't like how the layout looks, you can edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
+                <button type="button">Projects</button>
+                <button type="button">Projects</button>
+                <button type="button">Projects</button>
             </div>
         </div>
     </div>
-    <div class="stack">
-        <div class="window">
-            <div class="window-title">
-                <p>Window 1</p>
-            </div>
-            <div class="window-client">
-                <h1> Header 1 </h1>
-                <h2> Header 2 </h2>
-                <h3> Header 3 </h3>
-                <h4> Header 4 </h4>
-                <h5> Header 5 </h5>
-                <h6> Header 6 </h6>
-                <p>This is in the div</p>
-                <p>This is in the <b>div</b></p>
-                <p>This is in the <i>div</i></p>
-            </div>
-        </div>
-        <div class="window">
-            <div class="window-title">
-                <p>Window 2</p>
-            </div>
-            <div class="window-client">
-                <p>This is in the div</p>
-                <p>This is in the <b>div</b></p>
-                <p>This is in the <i>div</i></p>
-            </div>
-        </div>
-        <div class="window">
-            <div class="window-title">
-                <p>Window 3</p>
-            </div>
-            <div class="window-client">
-            </div>
-        </div>
+    <div id="stack0" class="stack">
+        <template id="settings">
+            <h1>lolololol</h1>
+        </template>
     </div>
 </div>
 <script src="scripts.js"></script>
