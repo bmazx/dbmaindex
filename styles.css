@@ -36,7 +36,7 @@ body {
     flex-direction: column;
     color: var(--fg-color);
     background-color: var(--bg-color);
-    background-image: url("images/winxpwp.jpg");
+    /* background-image: url("images/winxpwp.jpg"); */
 }
 
 a {
@@ -216,4 +216,22 @@ a.workspaces-sel:hover {
     .window-client {
         overflow: visible;
     }
+}
+
+
+/* project css */
+.project-card {
+    height: 3.75rem;
+    overflow: hidden;
+    padding-left: 0.5rem;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-color2);
+    cursor: pointer;
+    user-select: none;
+}
+
+.project-card:hover {
+    background-color: var(--bg-color2);
 }

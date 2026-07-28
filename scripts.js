@@ -77,7 +77,14 @@ class Window {
         this.titleElem.textContent = title;
     }
 
+    removeClientContent() {
+        while (this.winClientElem.firstChild) {
+            this.winClientElem.removeChild(this.winClientElem.lastChild);
+        }
+    }
+
     setClientTemplate(templateId) {
+        this.removeClientContent();
         const template = document.getElementById(templateId);
         const content = template.content.cloneNode(true);
         this.winClientElem.appendChild(content);
@@ -106,9 +113,9 @@ function updateDate() {
 
 var order = 1;
 function pushWindowToStack(winobj) {
-    const angle = order * Math.random() * 1.5;
-    order *= -1;
-    winobj.win.style.transform = `rotate(${angle}deg)`;
+    // const angle = order * Math.random() * 1.5;
+    // order *= -1;
+    // winobj.win.style.transform = `rotate(${angle}deg)`;
 
     stack.appendChild(winobj.win);
 }
@@ -127,18 +134,52 @@ function openSettings() {
     pushWindowToStack(settingsWindow);
 }
 
-updateDate(); // Update immediately
-setInterval(updateDate, 1000); // Update every second
+
+// project
+function displayProject(card) {
+    const templateElem = card.getElementsByTagName("template")[0];
+    const projectInfoWindow = document.getElementById("project-info");
+    const windowClientElem = projectInfoWindow.getElementsByClassName("window-client")[0];
+
+    while (windowClientElem.firstChild) {
+        windowClientElem.removeChild(windowClientElem.lastChild);
+    }
+
+    const content = templateElem.content.cloneNode(true);
+    windowClientElem.appendChild(content);
+
+    // set background color for selected card
+    const selCard = document.getElementById("sel-card");
+    if (selCard) {
+        selCard.style.backgroundColor = "";
+        selCard.id = "";
+    }
+
+    card.style.backgroundColor = "var(--hi-color)";
+    card.id = "sel-card";
+}
 
 
-const win1 = new Window("Window 1", "win1");
-win1.winClientElem.innerHTML = "<h1>Header 1</h1><h2>Header 2</h2><h3> Header 3</h3><h4>Header 4</h4><h5>Header 5</h5><h6>Header 6</h6><p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
+// entry point
 
-const win2 = new Window("Window 2", "win2");
-win2.winClientElem.innerHTML = "<p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
+if (document.body.id === "home") {
+    const win1 = new Window("Window 1", "win1");
+    win1.winClientElem.innerHTML = "<h1>Header 1</h1><h2>Header 2</h2><h3> Header 3</h3><h4>Header 4</h4><h5>Header 5</h5><h6>Header 6</h6><p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
 
-const win3 = new Window("Window 3", "win3");
+    const win2 = new Window("Window 2", "win2");
+    win2.winClientElem.innerHTML = "<p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
 
-pushWindowToStack(win1);
-pushWindowToStack(win2);
-pushWindowToStack(win3);
+    const win3 = new Window("Window 3", "win3");
+
+    pushWindowToStack(win1);
+    pushWindowToStack(win2);
+    pushWindowToStack(win3);
+}
+
+if (document.body.id === "projects") {
+
+}
+
+
+updateDate();
+setInterval(updateDate, 1000);
