@@ -40,8 +40,7 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: var(--fg-color);
+    color: var(--hi-color);
 }
 
 button {
@@ -71,6 +70,8 @@ button:active {
 }
 
 .header p, .header a {
+    text-decoration: none;
+    color: var(--fg-color);
     margin: 0;
     padding: 0.45rem;
 }
