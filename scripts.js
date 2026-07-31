@@ -128,134 +128,6 @@ function pushWindowToStackFront(winobj) {
     stack.prepend(winobj.win);
 }
 
-// slider range
-
-class SliderRange extends HTMLElement {
-    constructor() {
-        super();
-    }
-
-    connectedCallback() {
-        this.id = this.getAttribute("id");
-        this.name = this.getAttribute("name") ?? "";
-        this.value = Number(this.getAttribute("value") ?? 0);
-        this.min = Number(this.getAttribute("min") ?? 0);
-        this.max = Number(this.getAttribute("max") ?? 100);
-        this.step = Number(this.getAttribute("step") ?? 1);
-
-        this.dragging = false;
-
-        this.classList.add("slider-container");
-
-        // slider name
-        this.sliderName = document.createElement("div");
-        this.sliderName.classList.add("slider-name");
-        this.sliderName.textContent = this.name;
-
-        // slider range
-        this.sliderRange = document.createElement("div");
-        this.sliderRange.classList.add("slider-range");
-
-        if (!this.sliderRange.hasAttribute("tabindex")) {
-            this.sliderRange.tabIndex = 0;
-        }
-
-        // slider thumb
-        this.sliderThumb = document.createElement("div");
-        this.sliderThumb.classList.add("slider-thumb");
-        this.sliderThumb.style.left = "";
-
-        this.sliderRange.appendChild(this.sliderThumb);
-
-        // slider value
-        this.sliderValue = document.createElement("div");
-        this.sliderValue.classList.add("slider-val");
-        this.sliderValue.textContent = this.value;
-
-        this.appendChild(this.sliderName);
-        this.appendChild(this.sliderRange);
-        this.appendChild(this.sliderValue);
-
-        // set event listeners
-        this.sliderRange.addEventListener("pointerdown", e => {
-            this.dragging = true;
-
-            const move = e => this.updateSlider(e.clientX);
-
-            const up = () => {
-                this.dragging = false;
-                document.removeEventListener("pointermove", move);
-                document.removeEventListener("pointerup", up);
-            };
-
-            document.addEventListener("pointermove", move);
-            document.addEventListener("pointerup", up);
-
-            this.updateSlider(e.clientX);
-        });
-
-        this.sliderRange.addEventListener("keydown", e => {
-            if (e.key === "ArrowRight") this.value += this.step;
-            if (e.key === "ArrowLeft") this.value -= this.step
-
-            this.value = Math.max(this.min, Math.min(this.max, this.value));
-            this.sliderValue.textContent = this.value;
-            this.updateSliderThumbValue();
-        });
-
-        // update slider thumb pos
-        requestAnimationFrame(() => {
-            this.updateSliderThumbValue();
-        });
-    }
-
-    updateSlider(clientX) {
-        const rect = this.sliderRange.getBoundingClientRect();
-        const thumbRect = this.sliderThumb.getBoundingClientRect();
-
-        let leftBound = rect.left + thumbRect.width / 2;
-        let rightBound = rect.right - thumbRect.width / 2;
-        let percent = (clientX - leftBound) / (rightBound - leftBound);
-
-        percent = Math.max(0, Math.min(1, percent));
-
-        this.value = Math.round(this.min + percent * (this.max - this.min));
-        this.value = Math.round(this.value / this.step) * this.step;
-        this.value = Math.max(this.min, Math.min(this.max, this.value));
-
-        if (clientX >= rightBound) {
-            this.sliderThumb.style.left = `${rect.width - thumbRect.width}px`;
-        } else if (clientX <= leftBound) {
-            this.sliderThumb.style.left = `0px`;
-        } else {
-            this.updateSliderThumbValue();
-        }
-
-        this.sliderValue.textContent = this.value;
-    }
-
-    updateSliderThumbValue() {
-        let percent = (this.value - this.min) / (this.max - this.min);
-        percent = Math.max(0, Math.min(1, percent));
-
-        const rect = this.sliderRange.getBoundingClientRect();
-        const thumbRect = this.sliderThumb.getBoundingClientRect();
-        let pos = (rect.width - thumbRect.width) * percent;
-
-        this.sliderThumb.style.left = `calc(${pos}px)`;
-
-        this.dispatchEvent(new Event("input"));
-    }
-
-    updateValue(value) {
-        this.value = value;
-        this.value = Math.max(this.min, Math.min(this.max, this.value));
-        this.sliderValue.textContent = this.value;
-        this.updateSliderThumbValue();
-    }
-}
-
-customElements.define("slider-range", SliderRange);
 
 // index ----------------------------------------
 
@@ -273,14 +145,92 @@ function openSettings() {
 
     pushWindowToStackFront(settingsWindow);
 
+    const settingCheckboxSelWin = document.getElementById("setting-checkbox-sel-win");
+    settingCheckboxSelWin.addEventListener("input", e => {
+        if (settingCheckboxSelWin.checked) {
+            document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+        }
+        else {
+            document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
+        }
+    });
+
+    const settingCheckboxWinShake = document.getElementById("setting-checkbox-win-shake");
+    settingCheckboxWinShake.addEventListener("input", e => {
+        document.body.classList.toggle("animations-off", !settingCheckboxWinShake.checked);
+    });
+
+    const settingCheckboxEnableShadows = document.getElementById("setting-checkbox-shadows");
+    settingCheckboxEnableShadows.addEventListener("input", e => {
+        document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows.checked);
+    });
+
+
+    const settingOuterGap = document.getElementById("setting-outer-gap");
+    settingOuterGap.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--outer-gap", `${e.target.value}px`);
+    });
+
+    const settingInnerGap = document.getElementById("setting-inner-gap");
+    settingInnerGap.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--inner-gap", `${e.target.value}px`);
+    });
+
+    const settingBorderWidth = document.getElementById("setting-border-width");
+    settingBorderWidth.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--border-width", `${e.target.value}px`);
+    });
+
+    const settingShadowBlur = document.getElementById("setting-shadow-blur");
+    settingShadowBlur.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--shadow-blur", `${e.target.value}px`);
+    });
+
+    const settingShadowSpread = document.getElementById("setting-shadow-spread");
+    settingShadowSpread.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--shadow-spread", `${e.target.value}px`);
+    });
+
+
+    const settingColorBg = document.getElementById("setting-bg-color");
+    settingColorBg.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--bg-color", e.target.value);
+    });
+
+    const settingColorBg2 = document.getElementById("setting-bg2-color");
+    settingColorBg2.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--bg-color2", e.target.value);
+        document.documentElement.style.setProperty("--win-idle", e.target.value);
+    });
+
+    const settingColorFg = document.getElementById("setting-fg-color");
+    settingColorFg.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--fg-color", e.target.value);
+    });
+
+    const settingColorFg2 = document.getElementById("setting-fg2-color");
+    settingColorFg2.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--fg-color2", e.target.value);
+    });
+
     const settingColorMain = document.getElementById("setting-hi-color");
     settingColorMain.addEventListener("input", e => {
         document.documentElement.style.setProperty("--hi-color", e.target.value);
     });
 
-    const settingColorBg = document.getElementById("setting-bg-color");
-    settingColorBg.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--bg-color", e.target.value);
+    const settingColorButtonHover = document.getElementById("setting-button-hover-color");
+    settingColorButtonHover.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--button-hover", e.target.value);
+    });
+
+    const settingColorButtonActive = document.getElementById("setting-button-active-color");
+    settingColorButtonActive.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--button-active", e.target.value);
+    });
+
+    const settingColorNotify = document.getElementById("setting-notify-color");
+    settingColorNotify.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--notify-color", e.target.value);
     });
 }
 

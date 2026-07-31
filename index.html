@@ -33,16 +33,34 @@
             <div class="window-client">
                 <p>Hi, Hello! Welcome to dbmaindex</p>
                 <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
-                <p>don't like how the layout looks, you can edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
-                <slider-range id="volume" name="Volume" value="30" min="0" max="100" step="1"></slider-range>
-                <slider-range class="bright" id="bright" name="bright" value="30" min="0" max="100" step="1"></slider-range>
+                <p>don't like how the layout looks, edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
             </div>
         </div>
     </div>
     <div id="stack0" class="stack">
         <template id="settings">
-            <label><input type="color" id="setting-hi-color" value="#005577">main color</input></label>
-            <label><input type="color" id="setting-bg-color" value="#222222">background color</input></label>
+            <label><input type="checkbox" id="setting-checkbox-sel-win">distinguish highlighted window</label>
+            <label><input type="checkbox" id="setting-checkbox-win-shake" checked>window shake animation</label>
+            <label><input type="checkbox" id="setting-checkbox-shadows" checked>enable shadows</label>
+            <div style="display:flex; gap:8px;">
+                <div>
+                    <label><input type="number" id="setting-outer-gap" min="0" max="100" value="16">outer gap</label>
+                    <label><input type="number" id="setting-inner-gap" min="0" max="100" value="16">inner gap</label>
+                    <label><input type="number" id="setting-border-width" min="0" max="100" value="2.5">border width</label>
+                </div>
+                <div>
+                    <label><input type="number" id="setting-shadow-blur" min="0" max="100" value="8">shadow blur</label>
+                    <label><input type="number" id="setting-shadow-spread" min="0" max="100" value="2">shadow spread</label>
+                </div>
+            </div>
+            <label><input type="color" id="setting-bg-color" value="#222222">background color</label>
+            <label><input type="color" id="setting-bg2-color" value="#444444">background2 color</label>
+            <label><input type="color" id="setting-fg-color" value="#eeeeee">foreground color</label>
+            <label><input type="color" id="setting-fg2-color" value="#777777">foreground2 color</label>
+            <label><input type="color" id="setting-hi-color" value="#005577">main color</label>
+            <label><input type="color" id="setting-button-hover-color" value="#006080">button hover color</label>
+            <label><input type="color" id="setting-button-active-color" value="#004466">button active color</label>
+            <label><input type="color" id="setting-notify-color" value="#ddddfe">notify color</label>
         </template>
     </div>
 </div>

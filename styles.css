@@ -2,20 +2,19 @@
     --bg-color: #222222;
     --bg-color2: #444444;
     --fg-color: #eeeeee;
+    --fg-color2: #777777;
+    --win-idle: #444444;
     --hi-color: #005577;
-    --hi-color2: #777777;
-
-    --notify-color: #ddddfe;
-
     --button-hover: #006080;
     --button-active: #004466;
+    --notify-color: #ddddfe;
 
     --shadow-blur: 8px;
     --shadow-spread: 2px;
     --shadow-color: rgba(0, 0, 0, 0.6);
 
-    --inner-gap: 16px;
     --outer-gap: 16px;
+    --inner-gap: 16px;
 
     --border-width: 2.5px;
 }
@@ -68,51 +67,20 @@ label {
     margin: 0.5rem 0;
 }
 
+input[type=number] {
+    margin-right: 0.5rem;
+}
+
+input[type=checkbox] {
+    margin-right: 0.5rem;
+}
+
 input[type=color] {
     border: none;
     padding: 0;
     height: 1.5rem;
     margin-right: 0.5rem;
 }
-
-.slider-container {
-    display: flex;
-    margin: 1rem 0;
-    height: 1rem;
-}
-
-.slider-name {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 0.5rem;
-    user-select: none;
-}
-
-.slider-range {
-    display: flex;
-    align-items: center;
-    width: 50%;
-    height: 1rem;
-    background-color: var(--bg-color2);
-}
-
-.slider-thumb {
-    position: relative;
-    width: 0.7rem;
-    height: 1.0rem;
-    background-color: var(--hi-color);
-}
-
-.slider-val {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 1rem;
-    margin-left: 0.5rem;
-    user-select: none;
-}
-
 
 .header {
     display: flex;
@@ -181,7 +149,7 @@ a.workspaces-sel:hover {
     flex: 1 1 100px;
     background-color: var(--bg-color);
     box-shadow: 0 4px var(--shadow-blur) var(--shadow-spread) var(--shadow-color);
-    border: var(--border-width) solid var(--bg-color2);
+    border: var(--border-width) solid var(--win-idle);
     border-top: 1px solid var(--bg-color2);
 }
 
@@ -204,7 +172,7 @@ a.workspaces-sel:hover {
     justify-content: space-between;
     background-color: var(--hi-color);
     padding: 0.1rem;
-    box-shadow: 0 -1px 0 0 var(--hi-color2);
+    box-shadow: 0 -1px 0 0 var(--fg-color2);
 }
 
 .window-title-anim-notify {
@@ -247,7 +215,18 @@ a.workspaces-sel:hover {
     flex: 1 1 100px;
     overflow: auto;
     padding: 0 1rem;
-    border: 1px solid var(--hi-color2);
+    border: 1px solid var(--fg-color2);
+}
+
+/* disable animations */
+.animations-off .window:hover {
+    animation: none;
+}
+
+/* disable shadows */
+.shadow-off .window,
+.shadow-off .header {
+    box-shadow: none;
 }
 
 /* project css */
