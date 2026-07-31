@@ -62,6 +62,58 @@ button:active {
     background-color: var(--button-active);
 }
 
+label {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+input[type=color] {
+    border: none;
+    padding: 0;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+.slider-container {
+    display: flex;
+    margin: 1rem 0;
+    height: 1rem;
+}
+
+.slider-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 0.5rem;
+    user-select: none;
+}
+
+.slider-range {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    height: 1rem;
+    background-color: var(--bg-color2);
+}
+
+.slider-thumb {
+    position: relative;
+    width: 0.7rem;
+    height: 1.0rem;
+    background-color: var(--hi-color);
+}
+
+.slider-val {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1rem;
+    margin-left: 0.5rem;
+    user-select: none;
+}
+
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -198,6 +250,23 @@ a.workspaces-sel:hover {
     border: 1px solid var(--hi-color2);
 }
 
+/* project css */
+.project-card {
+    height: 3.75rem;
+    overflow: hidden;
+    padding-left: 0.5rem;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-color2);
+    cursor: pointer;
+    user-select: none;
+}
+
+.project-card:hover {
+    background-color: var(--bg-color2);
+}
+
 @media (max-width: 848px) {
     html, body {
         height: auto;
@@ -217,22 +286,4 @@ a.workspaces-sel:hover {
     .window-client {
         overflow: visible;
     }
-}
-
-
-/* project css */
-.project-card {
-    height: 3.75rem;
-    overflow: hidden;
-    padding-left: 0.5rem;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    border-bottom: 1px solid var(--bg-color2);
-    cursor: pointer;
-    user-select: none;
-}
-
-.project-card:hover {
-    background-color: var(--bg-color2);
 }

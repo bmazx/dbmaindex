@@ -90,6 +90,10 @@ class Window {
         this.winClientElem.appendChild(content);
     }
 
+    appendClientContent(elem) {
+        this.winClientElem.appendChild(elem);
+    }
+
     notify() {
         this.winTitleElem.classList.add("window-title-anim-notify");
 
@@ -120,6 +124,141 @@ function pushWindowToStack(winobj) {
     stack.appendChild(winobj.win);
 }
 
+function pushWindowToStackFront(winobj) {
+    stack.prepend(winobj.win);
+}
+
+// slider range
+
+class SliderRange extends HTMLElement {
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+        this.id = this.getAttribute("id");
+        this.name = this.getAttribute("name") ?? "";
+        this.value = Number(this.getAttribute("value") ?? 0);
+        this.min = Number(this.getAttribute("min") ?? 0);
+        this.max = Number(this.getAttribute("max") ?? 100);
+        this.step = Number(this.getAttribute("step") ?? 1);
+
+        this.dragging = false;
+
+        this.classList.add("slider-container");
+
+        // slider name
+        this.sliderName = document.createElement("div");
+        this.sliderName.classList.add("slider-name");
+        this.sliderName.textContent = this.name;
+
+        // slider range
+        this.sliderRange = document.createElement("div");
+        this.sliderRange.classList.add("slider-range");
+
+        if (!this.sliderRange.hasAttribute("tabindex")) {
+            this.sliderRange.tabIndex = 0;
+        }
+
+        // slider thumb
+        this.sliderThumb = document.createElement("div");
+        this.sliderThumb.classList.add("slider-thumb");
+        this.sliderThumb.style.left = "";
+
+        this.sliderRange.appendChild(this.sliderThumb);
+
+        // slider value
+        this.sliderValue = document.createElement("div");
+        this.sliderValue.classList.add("slider-val");
+        this.sliderValue.textContent = this.value;
+
+        this.appendChild(this.sliderName);
+        this.appendChild(this.sliderRange);
+        this.appendChild(this.sliderValue);
+
+        // set event listeners
+        this.sliderRange.addEventListener("pointerdown", e => {
+            this.dragging = true;
+
+            const move = e => this.updateSlider(e.clientX);
+
+            const up = () => {
+                this.dragging = false;
+                document.removeEventListener("pointermove", move);
+                document.removeEventListener("pointerup", up);
+            };
+
+            document.addEventListener("pointermove", move);
+            document.addEventListener("pointerup", up);
+
+            this.updateSlider(e.clientX);
+        });
+
+        this.sliderRange.addEventListener("keydown", e => {
+            if (e.key === "ArrowRight") this.value += this.step;
+            if (e.key === "ArrowLeft") this.value -= this.step
+
+            this.value = Math.max(this.min, Math.min(this.max, this.value));
+            this.sliderValue.textContent = this.value;
+            this.updateSliderThumbValue();
+        });
+
+        // update slider thumb pos
+        requestAnimationFrame(() => {
+            this.updateSliderThumbValue();
+        });
+    }
+
+    updateSlider(clientX) {
+        const rect = this.sliderRange.getBoundingClientRect();
+        const thumbRect = this.sliderThumb.getBoundingClientRect();
+
+        let leftBound = rect.left + thumbRect.width / 2;
+        let rightBound = rect.right - thumbRect.width / 2;
+        let percent = (clientX - leftBound) / (rightBound - leftBound);
+
+        percent = Math.max(0, Math.min(1, percent));
+
+        this.value = Math.round(this.min + percent * (this.max - this.min));
+        this.value = Math.round(this.value / this.step) * this.step;
+        this.value = Math.max(this.min, Math.min(this.max, this.value));
+
+        if (clientX >= rightBound) {
+            this.sliderThumb.style.left = `${rect.width - thumbRect.width}px`;
+        } else if (clientX <= leftBound) {
+            this.sliderThumb.style.left = `0px`;
+        } else {
+            this.updateSliderThumbValue();
+        }
+
+        this.sliderValue.textContent = this.value;
+    }
+
+    updateSliderThumbValue() {
+        let percent = (this.value - this.min) / (this.max - this.min);
+        percent = Math.max(0, Math.min(1, percent));
+
+        const rect = this.sliderRange.getBoundingClientRect();
+        const thumbRect = this.sliderThumb.getBoundingClientRect();
+        let pos = (rect.width - thumbRect.width) * percent;
+
+        this.sliderThumb.style.left = `calc(${pos}px)`;
+
+        this.dispatchEvent(new Event("input"));
+    }
+
+    updateValue(value) {
+        this.value = value;
+        this.value = Math.max(this.min, Math.min(this.max, this.value));
+        this.sliderValue.textContent = this.value;
+        this.updateSliderThumbValue();
+    }
+}
+
+customElements.define("slider-range", SliderRange);
+
+// index ----------------------------------------
+
 var settingsWindow = null;
 function openSettings() {
     const settingsElem = document.getElementById("window-settings");
@@ -131,11 +270,23 @@ function openSettings() {
 
     settingsWindow = new Window("Settings", "window-settings");
     settingsWindow.setClientTemplate("settings");
-    pushWindowToStack(settingsWindow);
+
+    pushWindowToStackFront(settingsWindow);
+
+    const settingColorMain = document.getElementById("setting-hi-color");
+    settingColorMain.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--hi-color", e.target.value);
+    });
+
+    const settingColorBg = document.getElementById("setting-bg-color");
+    settingColorBg.addEventListener("input", e => {
+        document.documentElement.style.setProperty("--bg-color", e.target.value);
+    });
 }
 
 
-// project
+// project ----------------------------------------
+
 function displayProject(card) {
     const templateElem = card.getElementsByTagName("template")[0];
     const projectInfoWindow = document.getElementById("project-info");
@@ -160,7 +311,7 @@ function displayProject(card) {
 }
 
 
-// entry point
+// entry point ----------------------------------------
 
 if (document.body.id === "home") {
     const win1 = new Window("Window 1", "win1");
@@ -179,7 +330,6 @@ if (document.body.id === "home") {
 if (document.body.id === "projects") {
 
 }
-
 
 updateDate();
 setInterval(updateDate, 1000);

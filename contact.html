@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/dbma.png">
 </head>
-<body id="home">
+<body id="contact">
 <div class="header">
     <div class="workspaces">
-        <a class="workspaces-sel" href="index.html">dbmaindex</a>
+        <a href="index.html">dbmaindex</a>
         <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+        <a class="workspaces-sel" href="contact.html">Contact</a>
         <a href="blog/blog.html">Blog</a>
         <a href="about.html">About</a>
     </div>
@@ -32,18 +32,10 @@
             </div>
             <div class="window-client">
                 <p>Hi, Hello! Welcome to dbmaindex</p>
-                <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
-                <p>don't like how the layout looks, you can edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
-                <slider-range id="volume" name="Volume" value="30" min="0" max="100" step="1"></slider-range>
-                <slider-range class="bright" id="bright" name="bright" value="30" min="0" max="100" step="1"></slider-range>
             </div>
         </div>
     </div>
     <div id="stack0" class="stack">
-        <template id="settings">
-            <label><input type="color" id="setting-hi-color" value="#005577">main color</input></label>
-            <label><input type="color" id="setting-bg-color" value="#222222">background color</input></label>
-        </template>
     </div>
 </div>
 <script src="scripts.js"></script>
