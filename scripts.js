@@ -1,107 +1,94 @@
-class Window {
-    constructor(title, id) {
-        this.title = title;
-        this.id = id;
-        this.win = document.createElement("div");
+class WindowBox extends HTMLElement {
+    constructor() {
+        super();
 
-        this.win.id = id;
-        this.win.classList.add("window");
+        const shadow = this.attachShadow({ mode: "open" });
 
-        // window title
-        this.winTitleElem = document.createElement("div");
-        this.winTitleElem.classList.add("window-title");
+        shadow.innerHTML = `
+            <div id="win-title" class="window-title">
+                <p id="title"></p>
+                <div id="window-btn" class="window-title-buttons">
+                    <button id="close">X</button>
+                    <button id="down">V</button>
+                    <button id="up">^</button>
+                </div>
+            </div>
+            <div id="client" class="window-client">
+                <slot></slot>
+            </div>
+        `;
 
-        this.titleElem = document.createElement("p");
-        this.titleElem.textContent = title;
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "styles.css";
+        shadow.prepend(link);
 
-        this.winTitleElem.appendChild(this.titleElem);
+        this.wintitleElem = shadow.getElementById("win-title");
+        this.titleElem = shadow.getElementById("title");
+        this.winBtn = shadow.getElementById("window-btn");
+        this.closeBtn = shadow.getElementById("close");
+        this.downBtn = shadow.getElementById("down");
+        this.upBtn = shadow.getElementById("up");
+        this.clientElem = shadow.getElementById("client");
 
-        // window client
-        this.winClientElem = document.createElement("div");
-        this.winClientElem.classList.add("window-client");
-
-        // window buttons
-        const windowButtons = document.createElement("div");
-        windowButtons.classList.add("window-title-buttons");
-
-        const winButtonClose = document.createElement("button");
-        winButtonClose.type = "button";
-        winButtonClose.textContent = "X";
-        winButtonClose.id = `${this.id}-close`;
-
-        const winButtonDown = document.createElement("button");
-        winButtonDown.type = "button";
-        winButtonDown.textContent = "V";
-        winButtonDown.id = `${this.id}-down`;
-
-        const winButtonUp = document.createElement("button");
-        winButtonUp.type = "button";
-        winButtonUp.textContent = "^";
-        winButtonDown.up = `${this.id}-up`;
-
-        windowButtons.appendChild(winButtonClose);
-        windowButtons.appendChild(winButtonDown);
-        windowButtons.appendChild(winButtonUp);
-
-        this.winTitleElem.appendChild(windowButtons);
-
-        // set button event listeners
-        winButtonClose.addEventListener("click", () => {
-            this.win.remove();
+        this.closeBtn.addEventListener("click", () => {
+            this.hidden = true;
         });
-        winButtonDown.addEventListener("click", () => {
-            const nextWin = this.win.nextElementSibling;
+        this.downBtn.addEventListener("click", () => {
+            const nextWin = this.nextElementSibling;
 
             if (!nextWin) {
                 return;
             }
 
-            nextWin.after(this.win);
+            nextWin.after(this);
         });
-        winButtonUp.addEventListener("click", () => {
-            const prevWin = this.win.previousElementSibling;
+        this.upBtn.addEventListener("click", () => {
+            const prevWin = this.previousElementSibling;
 
             if (!prevWin) {
                 return;
             }
 
-            prevWin.before(this.win);
+            prevWin.before(this);
         });
-
-        this.win.appendChild(this.winTitleElem);
-        this.win.appendChild(this.winClientElem);
     }
 
-    setTitle(title) {
-        this.title = title;
-        this.titleElem.textContent = title;
+    connectedCallback() {
+        this.id = this.getAttribute("id");
+        this.titleElem.textContent = this.getAttribute("name") ?? "Window";
     }
 
-    removeClientContent() {
-        while (this.winClientElem.firstChild) {
-            this.winClientElem.removeChild(this.winClientElem.lastChild);
+    static get observedAttributes() {
+        return ["name", "btn"];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "name" && this.titleElem) {
+            this.titleElem.textContent = newValue;
+        }
+        else if (name === "btn" && this.winBtn) {
+            if (newValue == "true") {
+                this.winBtn.hidden = false;
+            } else {
+            console.log(this.winBtn)
+                this.winBtn.hidden = true;
+            }
         }
     }
 
-    setClientTemplate(templateId) {
-        this.removeClientContent();
-        const template = document.getElementById(templateId);
-        const content = template.content.cloneNode(true);
-        this.winClientElem.appendChild(content);
-    }
-
-    appendClientContent(elem) {
-        this.winClientElem.appendChild(elem);
-    }
-
     notify() {
-        this.winTitleElem.classList.add("window-title-anim-notify");
+        this.wintitleElem.classList.add("window-title-anim-notify");
 
-        this.winTitleElem.addEventListener("animationend", () => {
-            this.winTitleElem.classList.remove("window-title-anim-notify");
+        this.wintitleElem.addEventListener("animationend", () => {
+            this.wintitleElem.classList.remove("window-title-anim-notify");
         }, { once: true });
     }
 }
+customElements.define("window-box", WindowBox);
+
+
+// index ----------------------------------------
 
 const stack = document.getElementById("stack0");
 
@@ -115,37 +102,53 @@ function updateDate() {
     document.getElementById("date").textContent = dateFormat + " - " + timeFormat;
 }
 
-var order = 1;
-function pushWindowToStack(winobj) {
-    // const angle = order * Math.random() * 1.5;
-    // order *= -1;
-    // winobj.win.style.transform = `rotate(${angle}deg)`;
-
-    stack.appendChild(winobj.win);
-}
-
-function pushWindowToStackFront(winobj) {
-    stack.prepend(winobj.win);
-}
-
-
-// index ----------------------------------------
-
-var settingsWindow = null;
 function openSettings() {
     const settingsElem = document.getElementById("window-settings");
 
-    if (settingsElem) {
-        settingsWindow.notify();
+    if (!settingsElem.hidden) {
+        settingsElem.notify();
         return;
     }
 
-    settingsWindow = new Window("Settings", "window-settings");
-    settingsWindow.setClientTemplate("settings");
+    settingsElem.hidden = false;
+}
 
-    pushWindowToStackFront(settingsWindow);
 
+// project ----------------------------------------
+
+function displayProject(card) {
+    const templateElem = card.getElementsByTagName("template")[0];
+    const projectInfoWindowElem = document.getElementById("project-info");
+
+    while (projectInfoWindowElem.firstChild) {
+        projectInfoWindowElem.removeChild(projectInfoWindowElem.lastChild);
+    }
+
+    const content = templateElem.content.cloneNode(true);
+    projectInfoWindowElem.appendChild(content);
+
+    // set background color for selected card
+    const selCard = document.getElementById("sel-card");
+    if (selCard) {
+        selCard.style.backgroundColor = "";
+        selCard.id = "";
+    }
+
+    card.style.backgroundColor = "var(--hi-color)";
+    card.id = "sel-card";
+}
+
+
+// entry point ----------------------------------------
+
+if (document.body.id === "home") {
     const settingCheckboxSelWin = document.getElementById("setting-checkbox-sel-win");
+    if (settingCheckboxSelWin.checked) {
+        document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+    }
+    else {
+        document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
+    }
     settingCheckboxSelWin.addEventListener("input", e => {
         if (settingCheckboxSelWin.checked) {
             document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
@@ -156,11 +159,13 @@ function openSettings() {
     });
 
     const settingCheckboxWinShake = document.getElementById("setting-checkbox-win-shake");
+    document.body.classList.toggle("animations-off", !settingCheckboxWinShake.checked);
     settingCheckboxWinShake.addEventListener("input", e => {
         document.body.classList.toggle("animations-off", !settingCheckboxWinShake.checked);
     });
 
     const settingCheckboxEnableShadows = document.getElementById("setting-checkbox-shadows");
+    document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows.checked);
     settingCheckboxEnableShadows.addEventListener("input", e => {
         document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows.checked);
     });
@@ -232,49 +237,6 @@ function openSettings() {
     settingColorNotify.addEventListener("input", e => {
         document.documentElement.style.setProperty("--notify-color", e.target.value);
     });
-}
-
-
-// project ----------------------------------------
-
-function displayProject(card) {
-    const templateElem = card.getElementsByTagName("template")[0];
-    const projectInfoWindow = document.getElementById("project-info");
-    const windowClientElem = projectInfoWindow.getElementsByClassName("window-client")[0];
-
-    while (windowClientElem.firstChild) {
-        windowClientElem.removeChild(windowClientElem.lastChild);
-    }
-
-    const content = templateElem.content.cloneNode(true);
-    windowClientElem.appendChild(content);
-
-    // set background color for selected card
-    const selCard = document.getElementById("sel-card");
-    if (selCard) {
-        selCard.style.backgroundColor = "";
-        selCard.id = "";
-    }
-
-    card.style.backgroundColor = "var(--hi-color)";
-    card.id = "sel-card";
-}
-
-
-// entry point ----------------------------------------
-
-if (document.body.id === "home") {
-    const win1 = new Window("Window 1", "win1");
-    win1.winClientElem.innerHTML = "<h1>Header 1</h1><h2>Header 2</h2><h3> Header 3</h3><h4>Header 4</h4><h5>Header 5</h5><h6>Header 6</h6><p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
-
-    const win2 = new Window("Window 2", "win2");
-    win2.winClientElem.innerHTML = "<p>This is in the div</p><p>This is in the <b>div</b></p><p>This is in the <i>div</i></p>";
-
-    const win3 = new Window("Window 3", "win3");
-
-    pushWindowToStack(win1);
-    pushWindowToStack(win2);
-    pushWindowToStack(win3);
 }
 
 if (document.body.id === "projects") {

@@ -25,20 +25,15 @@
     </div>
 </div>
 <div class="viewport">
-    <div class="master">
-        <div id="window0" class="window">
-            <div class="window-title">
-                <p>Welcome</p>
-            </div>
-            <div class="window-client">
-                <p>Hi, Hello! Welcome to dbmaindex</p>
-                <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
-                <p>don't like how the layout looks, edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
-            </div>
-        </div>
+    <div style="border:1px solid red; flex: 0.05 1 75px;">
     </div>
-    <div id="stack0" class="stack">
-        <template id="settings">
+    <div class="master">
+        <window-box id="window0" name="Master" btn="false">
+            <p>Hi, Hello! Welcome to dbmaindex</p>
+            <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
+            <p>don't like how the layout looks, edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
+        </window-box>
+        <window-box id="window-settings" name="Settings" hidden>
             <label><input type="checkbox" id="setting-checkbox-sel-win">distinguish highlighted window</label>
             <label><input type="checkbox" id="setting-checkbox-win-shake" checked>window shake animation</label>
             <label><input type="checkbox" id="setting-checkbox-shadows" checked>enable shadows</label>
@@ -61,7 +56,31 @@
             <label><input type="color" id="setting-button-hover-color" value="#006080">button hover color</label>
             <label><input type="color" id="setting-button-active-color" value="#004466">button active color</label>
             <label><input type="color" id="setting-notify-color" value="#ddddfe">notify color</label>
-        </template>
+        </window-box>
+    </div>
+    <div id="stack0" class="stack">
+        <window-box name="Window 1">
+            <h1>Header 1</h1>
+            <h2>Header 2</h2>
+            <h3> Header 3</h3>
+            <h4>Header 4</h4>
+            <h5>Header 5</h5>
+            <h6>Header 6</h6>
+            <p>This is in the div</p>
+            <p>This is in the <b>div</b></p>
+            <p>This is in the <i>div</i></p>
+        </window-box>
+        <window-box name="Window 2">
+            <p>This is in the div</p>
+            <p>This is in the <b>div</b></p>
+            <p>This is in the <i>div</i></p>
+        </window-box>
+        <window-box name="Window 3">
+        </window-box>
+    </div>
+    <div id="stack1" class="stack">
+        <window-box name="Window 3">
+        </window-box>
     </div>
 </div>
 <script src="scripts.js"></script>

@@ -26,58 +26,48 @@
 </div>
 <div class="viewport">
     <div id="stack0" class="stack" style="flex: 0.3 1 400px;">
-        <div id="project-list" class="window">
-            <div class="window-title">
-                <p>Projects List</p>
+        <window-box id="project-list" name="Projects List" btn="false">
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>Levikno</h3>
+                <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
+                <template>
+                    <h1>Levikno</h1>
+                    <p>source code: <a href="https://github.com/bmazx/levikno">levikno</a></p>
+                    <p>Levikno is a graphics framework built in C99 for game development and multimedia applications. The Levikno library is built on top of OpenGL and Vulkan and is designed to support multiple graphics APIs.</p>
+                    <p>The core API structure of levikno is designed similar to Vulkan's API calls including pipelines, buffers, descriptor layouts/sets and command buffers used for rendering graphics.</p>
+                    <p><b>Note: levikno is in an active rewrite from its original library written in C++17<br>
+                          you can view the original source code on github at <a href="https://github.com/bmazx/levikno-legacy/tree/main">levikno-legacy</a>.</b></p>
+                    <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" style="width:350px;height:auto;">
+                </template>
             </div>
-            <div class="window-client">
-                <div onclick="displayProject(this)" class="project-card">
-                    <h3>Levikno</h3>
-                    <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
-                    <template>
-                        <h1>Levikno</h1>
-                        <p>source code: <a href="https://github.com/bmazx/levikno">levikno</a></p>
-                        <p>Levikno is a graphics framework built in C99 for game development and multimedia applications. The Levikno library is built on top of OpenGL and Vulkan and is designed to support multiple graphics APIs.</p>
-                        <p>The core API structure of levikno is designed similar to Vulkan's API calls including pipelines, buffers, descriptor layouts/sets and command buffers used for rendering graphics.</p>
-                        <p><b>Note: levikno is in an active rewrite from its original library written in C++17<br>
-                              you can view the original source code on github at <a href="https://github.com/bmazx/levikno-legacy/tree/main">levikno-legacy</a>.</b></p>
-                        <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" style="width:350px;height:auto;">
-                    </template>
-                </div>
-                <div onclick="displayProject(this)" class="project-card">
-                    <h3>lvn_cma</h3>
-                    <p>custom memory arena and pool allocators written in C99 with custom allocation alignment requirements</p>
-                    <template>
-                        <h1>lvn_cma (custom memory allocators)</h1>
-                        <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_cma.h">lvn_cma.h</a></p>
-                        <p>lvn_cma is a single header file library written in C99 for custom memory allocation management utilizing memory pools and memory arenas to handle memory allocations.</p>
-                        <p>Internally, both the pool and arena use a memory block structure which stores the actual memory allocation, blocks also act like linked-lists allowing memory blocks to be chained for pool/arena allocation growth.</p>
-                        <p>With that said, pools and arenas determine the behavior of how memory allocations should be made to the blocks. Pools allow the user to request allocations of the same size minimizing fragmentation and allowing memory to be freed and reused.</p>
-                        <p>The arena allows the user to request their own sized allocations, additional arena features include arena resets and arena marks.</p>
-                        <p>Both the pool and arena allow specific alignment requirements allowing the user to pass in a more strict memory alignment.</p>
-                    </template>
-                </div>
-                <div onclick="displayProject(this)" class="project-card">
-                    <h3>lvn_gmath</h3>
-                    <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
-                    <template>
-                        <h1>lvn_gmath</h1>
-                        <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_gmath.h">lvn_gmath.h</a></p>
-                        <p>lvn_gmath is a single header math library written in C99 for graphics math including vectors and matrices math.</p>
-                        <p>Supports vector/matrix types of floating point numbers, signed and unsigned 8 to 64-bit integers types.</p>
-                    </template>
-                </div>
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>lvn_cma</h3>
+                <p>custom memory arena and pool allocators written in C99 with custom allocation alignment requirements</p>
+                <template>
+                    <h1>lvn_cma (custom memory allocators)</h1>
+                    <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_cma.h">lvn_cma.h</a></p>
+                    <p>lvn_cma is a single header file library written in C99 for custom memory allocation management utilizing memory pools and memory arenas to handle memory allocations.</p>
+                    <p>Internally, both the pool and arena use a memory block structure which stores the actual memory allocation, blocks also act like linked-lists allowing memory blocks to be chained for pool/arena allocation growth.</p>
+                    <p>With that said, pools and arenas determine the behavior of how memory allocations should be made to the blocks. Pools allow the user to request allocations of the same size minimizing fragmentation and allowing memory to be freed and reused.</p>
+                    <p>The arena allows the user to request their own sized allocations, additional arena features include arena resets and arena marks.</p>
+                    <p>Both the pool and arena allow specific alignment requirements allowing the user to pass in a more strict memory alignment.</p>
+                </template>
             </div>
-        </div>
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>lvn_gmath</h3>
+                <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
+                <template>
+                    <h1>lvn_gmath</h1>
+                    <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_gmath.h">lvn_gmath.h</a></p>
+                    <p>lvn_gmath is a single header math library written in C99 for graphics math including vectors and matrices math.</p>
+                    <p>Supports vector/matrix types of floating point numbers, signed and unsigned 8 to 64-bit integers types.</p>
+                </template>
+            </div>
+        </window-box>
     </div>
     <div class="master" style="flex: 0.7 1 400px;">
-        <div id="project-info" class="window">
-            <div class="window-title">
-                <p>Project Info</p>
-            </div>
-            <div class="window-client">
-                <p>click on a project to learn more about it</p>
-            </div>
+        <window-box id="project-info" name="Projects Info" btn="false">
+            <p>click on a project to learn more about it</p>
         </div>
     </div>
 </div>

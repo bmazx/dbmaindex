@@ -132,18 +132,20 @@ a.workspaces-sel:hover {
 
 .master {
     display: flex;
-    flex: 0.55 1 400px;
+    flex-direction: column;
+    flex: 0.55 1 350px;
+    gap: var(--inner-gap);
 }
 
 .stack {
-    flex: 0.45 1 400px;
+    flex: 0.45 1 350px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     gap: var(--inner-gap);
 }
 
-.window {
+window-box {
     display: flex;
     flex-direction: column;
     flex: 1 1 100px;
@@ -153,7 +155,7 @@ a.workspaces-sel:hover {
     border-top: 1px solid var(--bg-color2);
 }
 
-.window:hover {
+window-box:hover {
     border: var(--border-width) solid var(--hi-color);
     border-top: 1px solid var(--hi-color);
     animation: window-jitter 0.1s linear;
@@ -218,13 +220,21 @@ a.workspaces-sel:hover {
     border: 1px solid var(--fg-color2);
 }
 
+window-box[hidden] {
+    display: none !important;
+}
+
+.window-title-buttons[hidden] {
+    display: none !important;
+}
+
 /* disable animations */
-.animations-off .window:hover {
+.animations-off window-box:hover {
     animation: none;
 }
 
 /* disable shadows */
-.shadow-off .window,
+.shadow-off window-box,
 .shadow-off .header {
     box-shadow: none;
 }
