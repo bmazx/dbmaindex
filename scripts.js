@@ -60,7 +60,7 @@ class WindowBox extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["name", "btn"];
+        return ["name", "btn", "overflow"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -73,6 +73,14 @@ class WindowBox extends HTMLElement {
             } else {
             console.log(this.winBtn)
                 this.winBtn.hidden = true;
+            }
+        }
+        else if (name === "overflow" && this.winBtn) {
+            if (newValue == "true") {
+                this.clientElem.style.setProperty("overflow", "auto");
+            } else {
+            console.log(this.winBtn)
+                this.clientElem.style.setProperty("overflow", "");
             }
         }
     }
@@ -113,6 +121,18 @@ function openSettings() {
     settingsElem.hidden = false;
 }
 
+function setTheme(theme) {
+    const root = document.documentElement;
+
+    root.classList.remove("smileos");
+
+    if (theme !== "default") {
+        root.classList.add(theme);
+    }
+
+    localStorage.setItem("theme", theme);
+}
+
 
 // project ----------------------------------------
 
@@ -144,17 +164,17 @@ function displayProject(card) {
 if (document.body.id === "home") {
     const settingCheckboxSelWin = document.getElementById("setting-checkbox-sel-win");
     if (settingCheckboxSelWin.checked) {
-        document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+        document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
     }
     else {
-        document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
+        document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
     }
     settingCheckboxSelWin.addEventListener("input", e => {
         if (settingCheckboxSelWin.checked) {
-            document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+            document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
         }
         else {
-            document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
+            document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
         }
     });
 
@@ -241,6 +261,18 @@ if (document.body.id === "home") {
 
 if (document.body.id === "projects") {
 
+}
+
+const sideMenu = document.getElementById("side-menu");
+if (sideMenu) {
+    sideMenu.clientElem.style.setProperty("padding", "0");
+}
+
+// local storage
+const savedTheme = localStorage.getItem("theme");
+console.log(savedTheme);
+if (savedTheme) {
+    setTheme(savedTheme);
 }
 
 updateDate();

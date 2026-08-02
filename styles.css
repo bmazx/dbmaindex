@@ -1,9 +1,9 @@
 :root {
     --bg-color: #222222;
     --bg-color2: #444444;
+    --win-idle: #444444;
     --fg-color: #eeeeee;
     --fg-color2: #777777;
-    --win-idle: #444444;
     --hi-color: #005577;
     --button-hover: #006080;
     --button-active: #004466;
@@ -17,6 +17,18 @@
     --inner-gap: 16px;
 
     --border-width: 2.5px;
+}
+
+:root.smileos {
+    --bg-color: #222222;
+    --bg-color2: #0f0f0f;
+    --win-idle: #0f0f0f;
+    --fg-color: #aaaaaa;
+    --fg-color2: #ad1f1f;
+    --hi-color: #770000;
+    --button-hover: #8f1717;
+    --button-active: #913f1c;
+    --notify-color: #aaaaaa;
 }
 
 @font-face {
@@ -84,6 +96,7 @@ input[type=color] {
 
 .header {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     background-color: var(--bg-color);
     box-shadow: 0 4px var(--shadow-blur) var(--shadow-color);
@@ -123,11 +136,13 @@ a.workspaces-sel:hover {
 }
 
 .viewport {
-    margin: var(--outer-gap);
+    padding: var(--outer-gap);
     display: flex;
     flex-wrap: wrap;
     gap: var(--inner-gap);
-    flex: 1;
+    height: 100%;
+    overflow: auto;
+    max-width: 2560px;
 }
 
 .master {
@@ -148,7 +163,6 @@ a.workspaces-sel:hover {
 window-box {
     display: flex;
     flex-direction: column;
-    flex: 1 1 100px;
     background-color: var(--bg-color);
     box-shadow: 0 4px var(--shadow-blur) var(--shadow-spread) var(--shadow-color);
     border: var(--border-width) solid var(--win-idle);
@@ -215,7 +229,6 @@ window-box:hover {
 
 .window-client {
     flex: 1 1 100px;
-    overflow: auto;
     padding: 0 1rem;
     border: 1px solid var(--fg-color2);
 }
@@ -226,6 +239,47 @@ window-box[hidden] {
 
 .window-title-buttons[hidden] {
     display: none !important;
+}
+
+.side-menu a,
+.side-menu button {
+    display: block;
+    padding: 0.4rem;
+    text-decoration: none;
+    color: var(--fg-color);
+    border-bottom: 1px solid var(--bg-color2);
+}
+
+.side-menu button {
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.side-menu button:hover {
+    background-color: var(--bg-color2);
+}
+
+.side-menu summary {
+    padding: 0.4rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--bg-color2);
+}
+
+.side-menu details a {
+    background-color: var(--bg-color);
+    padding-left: 1rem;
+}
+
+.side-menu a:hover,
+.side-menu summary:hover {
+    background-color: var(--bg-color2);
+}
+
+.side-menu details:open {
+    background-color: var(--hi-color);
 }
 
 /* disable animations */

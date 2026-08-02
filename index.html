@@ -25,16 +25,33 @@
     </div>
 </div>
 <div class="viewport">
-    <div style="border:1px solid red; flex: 0.05 1 75px;">
-    </div>
+    <window-box id="side-menu" class="side-menu" name="Index" btn="false" style="width:100px;">
+        <details open>
+            <summary>Navigation</summary>
+            <a href="index.html">dbmaindex</a>
+            <a href="projects.html">Projects</a>
+            <a href="contact.html">Contact</a>
+            <a href="blog/blog.html">Blog</a>
+            <a href="about.html">About</a>
+        </details>
+        <details>
+            <summary>Themes</summary>
+            <button onclick="setTheme('default')" type="button">default</button>
+            <button onclick="setTheme('smileos')" type="button">smileOS</button>
+        </details>
+        <details>
+            <summary>Windows</summary>
+            <button onclick="openSettings()" type="button">settings</button>
+        </details>
+    </window-box>
     <div class="master">
-        <window-box id="window0" name="Master" btn="false">
+        <window-box id="window0" name="Welcome" btn="false">
             <p>Hi, Hello! Welcome to dbmaindex</p>
-            <p>I'm Brian, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
+            <p>I'm dbma, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere. Feel free to look around.</p>
             <p>don't like how the layout looks, edit the theme here :) <button onclick="openSettings()" type="button">settings</button></p>
         </window-box>
         <window-box id="window-settings" name="Settings" hidden>
-            <label><input type="checkbox" id="setting-checkbox-sel-win">distinguish highlighted window</label>
+            <label><input type="checkbox" id="setting-checkbox-sel-win" checked>distinguish highlighted window</label>
             <label><input type="checkbox" id="setting-checkbox-win-shake" checked>window shake animation</label>
             <label><input type="checkbox" id="setting-checkbox-shadows" checked>enable shadows</label>
             <div style="display:flex; gap:8px;">
@@ -59,10 +76,21 @@
         </window-box>
     </div>
     <div id="stack0" class="stack">
+        <window-box name="Window 1" overflow="true">
+            <h1>Header 1</h1>
+            <h2>Header 2</h2>
+            <h3>Header 3</h3>
+            <h4>Header 4</h4>
+            <h5>Header 5</h5>
+            <h6>Header 6</h6>
+            <p>This is in the div</p>
+            <p>This is in the <b>div</b></p>
+            <p>This is in the <i>div</i></p>
+        </window-box>
         <window-box name="Window 1">
             <h1>Header 1</h1>
             <h2>Header 2</h2>
-            <h3> Header 3</h3>
+            <h3>Header 3</h3>
             <h4>Header 4</h4>
             <h5>Header 5</h5>
             <h6>Header 6</h6>
@@ -75,11 +103,18 @@
             <p>This is in the <b>div</b></p>
             <p>This is in the <i>div</i></p>
         </window-box>
-        <window-box name="Window 3">
-        </window-box>
     </div>
     <div id="stack1" class="stack">
-        <window-box name="Window 3">
+        <window-box name="Updates">
+            <p>2026-8-1:</p>
+            <ul>
+                <li>created this</li>
+            </ul>
+        </window-box>
+        <window-box name="Status Message">
+            <p>2026-8-1:</p>
+            <p>This is pretty much a mess right now</p>
+            <p>- dbma</p>
         </window-box>
     </div>
 </div>
