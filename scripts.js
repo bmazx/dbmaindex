@@ -96,6 +96,11 @@ class WindowBox extends HTMLElement {
 customElements.define("window-box", WindowBox);
 
 
+function toggleFont() {
+    document.body.classList.toggle("use-system-font");
+}
+
+
 // index ----------------------------------------
 
 const stack = document.getElementById("stack0");
@@ -130,7 +135,7 @@ function setTheme(theme) {
         root.classList.add(theme);
     }
 
-    localStorage.setItem("theme", theme);
+    sessionStorage.setItem("theme", theme);
 }
 
 
@@ -269,7 +274,7 @@ if (sideMenu) {
 }
 
 // local storage
-const savedTheme = localStorage.getItem("theme");
+const savedTheme = sessionStorage.getItem("theme");
 console.log(savedTheme);
 if (savedTheme) {
     setTheme(savedTheme);
