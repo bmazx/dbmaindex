@@ -60,7 +60,7 @@ class WindowBox extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["name", "btn", "overflow"];
+        return ["name", "btn", "overflow", "overflowx", "overflowy"];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -71,17 +71,11 @@ class WindowBox extends HTMLElement {
             if (newValue == "true") {
                 this.winBtn.hidden = false;
             } else {
-            console.log(this.winBtn)
                 this.winBtn.hidden = true;
             }
         }
-        else if (name === "overflow" && this.winBtn) {
-            if (newValue == "true") {
-                this.clientElem.style.setProperty("overflow", "auto");
-            } else {
-            console.log(this.winBtn)
-                this.clientElem.style.setProperty("overflow", "");
-            }
+        else if (name === "overflow" || name === "overflowx" || name === "overflowy") {
+            this.clientElem.style.setProperty("overflow", newValue);
         }
     }
 
@@ -275,7 +269,6 @@ if (sideMenu) {
 
 // local storage
 const savedTheme = sessionStorage.getItem("theme");
-console.log(savedTheme);
 if (savedTheme) {
     setTheme(savedTheme);
 }

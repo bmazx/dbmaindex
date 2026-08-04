@@ -19,27 +19,26 @@
     <div class="status">
         <p id="date" class="status-time">date</p>
         <div class="status-button" onclick="toggleFont()">Tt</div>
-        <div class="status-button" onclick="toggleFont()">Tt</div>
     </div>
 </div>
 <div class="viewport">
-    <window-box id="side-menu" class="side-menu" name="Index" btn="false">
+    <window-box id="side-menu" class="side-menu" name="Menu" btn="false" overflowx="hidden">
         <details open>
             <summary>Navigation</summary>
-            <a href="index.html">Index</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
-            <a href="blog/blog.html">Blog</a>
-            <a href="about.html">About</a>
+                    <a href="index.html"><div class="side-menu-text">Index</div></a>
+                    <a href="projects.html"><div class="side-menu-text">Projects</div></a>
+                    <a href="contact.html"><div class="side-menu-text">Contact</div></a>
+                    <a href="blog/blog.html"><div class="side-menu-text">Blog</div></a>
+                    <a href="about.html"><div class="side-menu-text">About</div></a>
         </details>
         <details>
             <summary>Themes</summary>
-            <button onclick="setTheme('default')" type="button">default</button>
-            <button onclick="setTheme('smileos')" type="button">smileOS</button>
+                <button onclick="setTheme('default')" type="button"><div class="side-menu-text">default</div></button>
+                <button onclick="setTheme('smileos')" type="button"><div class="side-menu-text">smileOS</div></button>
         </details>
         <details>
             <summary>Windows</summary>
-            <button onclick="openSettings()" type="button">settings</button>
+                <button onclick="openSettings()" type="button"><div class="side-menu-text">settings</div></button>
         </details>
     </window-box>
     <div class="master">
@@ -74,7 +73,7 @@
         </window-box>
     </div>
     <div id="stack0" class="stack">
-        <window-box name="Window 1" overflow="true">
+        <window-box name="Window 1" overflowy="auto">
             <h1>Header 1</h1>
             <h2>Header 2</h2>
             <h3>Header 3</h3>

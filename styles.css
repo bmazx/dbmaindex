@@ -273,10 +273,6 @@ window-box[hidden] {
     padding-left: 1rem;
 }
 
-.side-menu button:hover {
-    background-color: var(--bg-color2);
-}
-
 .side-menu summary {
     padding: 0.4rem;
     cursor: pointer;
@@ -288,11 +284,22 @@ window-box[hidden] {
     padding-left: 1rem;
 }
 
+.side-menu button:hover,
 .side-menu a:hover,
 .side-menu summary:hover {
     background-color: var(--bg-color2);
 }
 
+.side-menu button:hover .side-menu-text,
+.side-menu a:hover .side-menu-text {
+    animation: side-menu-sel 0.2s ease-out;
+    animation-fill-mode: forwards;
+}
+ 
+@keyframes side-menu-sel {
+    0% {translate: 0 0;}
+    100% {translate: 10px 0;}
+}
 .side-menu details:open > summary {
     background-color: var(--hi-color);
 }
