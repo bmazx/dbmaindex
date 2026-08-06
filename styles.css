@@ -17,6 +17,8 @@
     --inner-gap: 16px;
 
     --border-width: 2.5px;
+
+    --font-family: proggyClean, Arial, Helvetica, sans-serif;
 }
 
 :root.smileos {
@@ -31,6 +33,18 @@
     --notify-color: #aaaaaa;
 }
 
+:root.catppuccin {
+    --bg-color: #11111b;
+    --bg-color2: #585b70;
+    --win-idle: #585b70;
+    --fg-color: #cdd6f4;
+    --fg-color2: #9399b2;
+    --hi-color: #7287fd;
+    --button-hover: #1e66f5;
+    --button-active: #d20f39;
+    --notify-color: #e64553;
+}
+
 @font-face {
     font-family: proggyClean;
     src: url(fonts/ProggyCleanNerdFont-Regular.ttf);
@@ -39,11 +53,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    font-family: proggyClean, Arial, Helvetica, sans-serif;
-}
-
-body.use-system-font {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font-family);
 }
 
 body {
@@ -63,7 +73,7 @@ button {
     padding: 0.25rem;
     text-align: center;
     text-decoration: none;
-    font-family: proggyClean;
+    font-family: var(--font-family);
     font-size: 1rem;
     background-color: var(--hi-color);
     color: var(--fg-color);
@@ -163,12 +173,12 @@ a.workspaces-sel:hover {
 .master {
     display: flex;
     flex-direction: column;
-    flex: 0.55 1 350px;
+    flex: 0.55 1 270px;
     gap: var(--inner-gap);
 }
 
 .stack {
-    flex: 0.45 1 350px;
+    flex: 0.45 1 230px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -256,6 +266,11 @@ window-box[hidden] {
     display: none !important;
 }
 
+.side-menu {
+    flex: 0.15 1 80px;
+    min-height: 500px;
+}
+
 .side-menu a,
 .side-menu button {
     display: block;
@@ -263,6 +278,7 @@ window-box[hidden] {
     text-decoration: none;
     color: var(--fg-color);
     border-bottom: 1px solid var(--bg-color2);
+    user-select: none;
 }
 
 .side-menu button {
@@ -271,12 +287,14 @@ window-box[hidden] {
     background-color: var(--bg-color);
     text-align: left;
     padding-left: 1rem;
+    user-select: none;
 }
 
 .side-menu summary {
     padding: 0.4rem;
     cursor: pointer;
     border-bottom: 1px solid var(--bg-color2);
+    user-select: none;
 }
 
 .side-menu details a {
@@ -332,7 +350,38 @@ window-box[hidden] {
     background-color: var(--bg-color2);
 }
 
-@media (max-width: 848px) {
+/* blog css */
+.blog-viewport {
+    display: flex;
+    gap: var(--inner-gap);
+    flex: 1;
+    margin: 0 4rem;
+}
+
+.blog-card {
+    height: 1rem;
+    padding: 0.5rem 0;
+    overflow: hidden;
+    padding-left: 0.5rem;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-bottom: 1px solid var(--bg-color2);
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: var(--fg-color);
+}
+
+.blog-card p {
+    margin: 0;
+}
+
+.blog-card:hover {
+    background-color: var(--bg-color2);
+}
+
+@media (max-width: 630px) {
     html, body {
         height: auto;
     }
@@ -351,5 +400,9 @@ window-box[hidden] {
 
     .window-client {
         overflow: visible;
+    }
+
+    .blog-viewport {
+        width: 100%;
     }
 }

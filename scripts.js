@@ -2,34 +2,49 @@ class WindowBox extends HTMLElement {
     constructor() {
         super();
 
-        const shadow = this.attachShadow({ mode: "open" });
+        this.winTitleElem = document.createElement("div");
+        this.winTitleElem.classList.add("window-title");
 
-        shadow.innerHTML = `
-            <div id="win-title" class="window-title">
-                <p id="title"></p>
-                <div id="window-btn" class="window-title-buttons">
-                    <button id="close">X</button>
-                    <button id="down">V</button>
-                    <button id="up">^</button>
-                </div>
-            </div>
-            <div id="client" class="window-client">
-                <slot></slot>
-            </div>
-        `;
+        // title
+        this.titleElem = document.createElement("p");
+        this.winTitleElem.appendChild(this.titleElem);
 
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "styles.css";
-        shadow.prepend(link);
+        // buttons
+        this.winBtn = document.createElement("div");
+        this.winBtn.classList.add("window-title-buttons");
 
-        this.wintitleElem = shadow.getElementById("win-title");
-        this.titleElem = shadow.getElementById("title");
-        this.winBtn = shadow.getElementById("window-btn");
-        this.closeBtn = shadow.getElementById("close");
-        this.downBtn = shadow.getElementById("down");
-        this.upBtn = shadow.getElementById("up");
-        this.clientElem = shadow.getElementById("client");
+        this.closeBtn = document.createElement("button");
+        this.closeBtn.textContent = "X";
+        this.winBtn.appendChild(this.closeBtn);
+
+        this.downBtn = document.createElement("button");
+        this.downBtn.textContent = "V";
+        this.winBtn.appendChild(this.downBtn);
+
+        this.upBtn = document.createElement("button");
+        this.upBtn.textContent = "^";
+        this.winBtn.appendChild(this.upBtn);
+
+        this.winTitleElem.appendChild(this.winBtn);
+
+        // client
+        this.clientElem = document.createElement("div");
+        this.clientElem.classList.add("window-client");
+    }
+
+    connectedCallback() {
+        if (this._initialized) return;
+            this._initialized = true;
+
+        this.id = this.getAttribute("id");
+        this.titleElem.textContent = this.getAttribute("name") ?? "Window";
+
+        const children = [...this.childNodes];
+
+        this.appendChild(this.winTitleElem);
+        this.appendChild(this.clientElem);
+
+        this.clientElem.append(...children);
 
         this.closeBtn.addEventListener("click", () => {
             this.hidden = true;
@@ -54,11 +69,6 @@ class WindowBox extends HTMLElement {
         });
     }
 
-    connectedCallback() {
-        this.id = this.getAttribute("id");
-        this.titleElem.textContent = this.getAttribute("name") ?? "Window";
-    }
-
     static get observedAttributes() {
         return ["name", "btn", "overflow", "overflowx", "overflowy"];
     }
@@ -74,24 +84,51 @@ class WindowBox extends HTMLElement {
                 this.winBtn.hidden = true;
             }
         }
-        else if (name === "overflow" || name === "overflowx" || name === "overflowy") {
+        else if (name === "overflow") {
             this.clientElem.style.setProperty("overflow", newValue);
+        } else if (name === "overflowx") {
+            this.clientElem.style.setProperty("overflow-x", newValue);
+        } else if (name === "overflowy") {
+            this.clientElem.style.setProperty("overflow-y", newValue);
         }
     }
 
     notify() {
-        this.wintitleElem.classList.add("window-title-anim-notify");
+        this.winTitleElem.classList.add("window-title-anim-notify");
 
-        this.wintitleElem.addEventListener("animationend", () => {
-            this.wintitleElem.classList.remove("window-title-anim-notify");
+        this.winTitleElem.addEventListener("animationend", () => {
+            this.winTitleElem.classList.remove("window-title-anim-notify");
         }, { once: true });
+    }
+
+    clearClient() {
+        while (this.clientElem.firstChild) {
+            this.clientElem.removeChild(this.clientElem.lastChild);
+        }
+    }
+
+    setClient(elem) {
+        this.clearClient();
+        this.clientElem.appendChild(elem);
+    }
+
+    appendClient(elem) {
+        this.clientElem.appendChild(elem);
     }
 }
 customElements.define("window-box", WindowBox);
 
 
+var useSystem = false;
 function toggleFont() {
-    document.body.classList.toggle("use-system-font");
+    useSystem = !useSystem;
+    if (useSystem) {
+        document.documentElement.style.setProperty("--font-family", "Arial, Helvetica, sans-serif");
+        sessionStorage.setItem("fonts", "Arial, Helvetica, sans-serif");
+    } else {
+        document.documentElement.style.setProperty("--font-family", "proggyClean, Arial, Helvetica, sans-serif");
+        sessionStorage.setItem("fonts", "proggyClean, Arial, Helvetica, sans-serif");
+    }
 }
 
 
@@ -124,6 +161,7 @@ function setTheme(theme) {
     const root = document.documentElement;
 
     root.classList.remove("smileos");
+    root.classList.remove("catppuccin");
 
     if (theme !== "default") {
         root.classList.add(theme);
@@ -139,12 +177,8 @@ function displayProject(card) {
     const templateElem = card.getElementsByTagName("template")[0];
     const projectInfoWindowElem = document.getElementById("project-info");
 
-    while (projectInfoWindowElem.firstChild) {
-        projectInfoWindowElem.removeChild(projectInfoWindowElem.lastChild);
-    }
-
     const content = templateElem.content.cloneNode(true);
-    projectInfoWindowElem.appendChild(content);
+    projectInfoWindowElem.setClient(content);
 
     // set background color for selected card
     const selCard = document.getElementById("sel-card");
@@ -157,6 +191,25 @@ function displayProject(card) {
     card.id = "sel-card";
 }
 
+// blog ----------------------------------------
+
+function displayBlog(card) {
+    const templateElem = card.getElementsByTagName("template")[0];
+    const blogWindowElem = document.getElementById("blog-content");
+
+    const content = templateElem.content.cloneNode(true);
+    blogWindowElem.setClient(content);
+
+    // set background color for selected card
+    const selCard = document.getElementById("sel-blog");
+    if (selCard) {
+        selCard.style.backgroundColor = "";
+        selCard.id = "";
+    }
+
+    card.style.backgroundColor = "var(--hi-color)";
+    card.id = "sel-blog";
+}
 
 // entry point ----------------------------------------
 
@@ -271,6 +324,11 @@ if (sideMenu) {
 const savedTheme = sessionStorage.getItem("theme");
 if (savedTheme) {
     setTheme(savedTheme);
+}
+
+const savedFont = sessionStorage.getItem("fonts");
+if (savedFont) {
+    document.documentElement.style.setProperty("--font-family", savedFont);
 }
 
 updateDate();

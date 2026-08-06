@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>dbmaindex</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="dbmaindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="images/dbma.png">
+</head>
+<body id="projects">
+<div class="header">
+    <div class="workspaces">
+        <a href="index.html">dbmaindex</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a class="workspaces-sel" href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+    </div>
+    <div class="header-title">
+    </div>
+    <div class="status">
+        <p id="date">status</p>
+        <a href="">:3</a>
+    </div>
+</div>
+<div class="viewport" style="display:flex; justify-content:center;">
+    <div class="blog-viewport">
+        <window-box id="blog-list" name="Blog List" btn="false" overflow="auto" style="flex:0.35;">
+            <div onclick="displayBlog(this)" class="blog-card">
+                <p><b>2026-8-5</b></p>
+                <p>First Blog Post</p>
+                <template>
+                    <h1>My First Blog</h1>
+                    <p>my first blog</p>
+                </template>
+            </div>
+        </window-box>
+        <window-box id="blog-content" name="Blog" btn="false" style="flex:0.65;">
+            <p>click on a project to learn more about it</p>
+        </window-box>
+    </div>
+</div>
+<script src="scripts.js"></script>
+</body>
+</html>
