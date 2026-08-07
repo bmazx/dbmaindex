@@ -333,3 +333,38 @@ if (savedFont) {
 
 updateDate();
 setInterval(updateDate, 1000);
+
+// set background
+const hazeImages = [
+    "haze-full+.jpg",
+    "haze-mitera+0.jpg",
+    "haze-twilit-embers+.jpg",
+    "haze-ghila+.jpg",
+    "haze-mitera+1.jpg",
+    "haze-sarifa+6.jpg",
+    "haze-lathia+.jpg",
+    "haze-maithi+.jpg",
+];
+
+const filename = hazeImages[
+    Math.floor(Math.random() * hazeImages.length)
+]
+
+const starx = Math.round(Math.random() * 512);
+const stary = Math.round(Math.random() * 512);
+
+document.body.style.backgroundImage = `url("images/bg/stars.png"), url("images/bg/${filename}")`;
+document.body.style.backgroundPosition = `${starx}px ${stary}px, 0 0`;
+
+// cursor follower
+/*
+const follower = document.createElement("div");
+follower.id = "cursor-follow";
+document.addEventListener("mousemove", (event) => {
+    follower.style.display = "inline";
+    const offset = 8;
+    follower.style.left = `${event.clientX + offset}px`;
+    follower.style.top = `${event.clientY + offset}px`;
+});
+document.body.appendChild(follower);
+*/

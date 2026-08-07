@@ -41,7 +41,7 @@
     --fg-color2: #9399b2;
     --hi-color: #7287fd;
     --button-hover: #1e66f5;
-    --button-active: #d20f39;
+    --button-active: #04a5e5;
     --notify-color: #e64553;
 }
 
@@ -61,7 +61,6 @@ body {
     flex-direction: column;
     color: var(--fg-color);
     background-color: var(--bg-color);
-    /* background-image: url("images/winxpwp.jpg"); */
 }
 
 a {
@@ -152,12 +151,9 @@ a.workspaces-sel:hover {
     user-select: none;
 }
 
-.status-time {
-    background-color: var(--bg-color);
-}
-
 .status-button {
     background-color: var(--bg-color);
+    border: 1px solid var(--bg-color2);
     cursor: pointer;
 }
 
@@ -269,6 +265,7 @@ window-box[hidden] {
 .side-menu {
     flex: 0.15 1 80px;
     min-height: 500px;
+    overflow-x: hidden;
 }
 
 .side-menu a,
@@ -381,6 +378,17 @@ window-box[hidden] {
     background-color: var(--bg-color2);
 }
 
+#cursor-follow {
+    display: none;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url("images/box.gif");
+    background-size: 100% 100%;
+}
+
 @media (max-width: 630px) {
     html, body {
         height: auto;
@@ -396,6 +404,11 @@ window-box[hidden] {
         flex: none;
         width: 100%;
         height: auto;
+    }
+
+    .side-menu {
+        min-height: auto;
+        overflow: visible;
     }
 
     .window-client {
