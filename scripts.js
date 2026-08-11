@@ -385,11 +385,20 @@ const click = new Audio("audio/click.wav");
 const click2 = new Audio("audio/click2.wav");
 
 document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, .status-button, button").forEach(elem => {
-    elem.addEventListener("click", () => {
+    elem.addEventListener("click", (e) => {
         if (!enableAudio)
             return;
         click2.currentTime = 0;
         click2.play();
+    });
+});
+
+document.querySelectorAll(".project-card, .blog-card").forEach(elem => {
+    elem.addEventListener("click", () => {
+        if (!enableAudio)
+            return;
+        confirm.currentTime = 0;
+        confirm.play();
     });
 });
 
