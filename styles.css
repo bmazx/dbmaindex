@@ -164,6 +164,11 @@ a.workspaces-sel:hover {
     background-size: 100% 100%;
 }
 
+.status-audio-button {
+    background-image: url("images/audio.png");
+    background-size: 100% 100%;
+}
+
 .status-font-button:hover {
     filter: brightness(1.3);
 }
@@ -360,6 +365,12 @@ window-box[hidden] {
 
 .project-card:hover {
     background-color: var(--bg-color2);
+}
+
+.project-img {
+    margin: 1rem 0;
+    width: 80%;
+    height: auto;
 }
 
 /* blog css */

@@ -37,7 +37,7 @@
                     <p>The core API structure of levikno is designed similar to Vulkan's API calls including pipelines, buffers, descriptor layouts/sets and command buffers used for rendering graphics.</p>
                     <p><b>Note: levikno is in an active rewrite from its original library written in C++17<br>
                           you can view the original source code on github at <a href="https://github.com/bmazx/levikno-legacy/tree/main">levikno-legacy</a>.</b></p>
-                    <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" style="width:50%;height:auto;">
+                    <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" class="project-img">
                 </template>
             </div>
             <div onclick="displayProject(this)" class="project-card">
@@ -61,6 +61,41 @@
                     <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_gmath.h">lvn_gmath.h</a></p>
                     <p>lvn_gmath is a single header math library written in C99 for graphics math including vectors and matrices math.</p>
                     <p>Supports vector/matrix types of floating point numbers, signed and unsigned 8 to 64-bit integers types.</p>
+                </template>
+            </div>
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>double pendulum</h3>
+                <p>an opengl program that simulates a double pendulum</p>
+                <template>
+                    <h1>Double Pendulum</h1>
+                    <p>source code: <a href="https://github.com/bmazx/doublePendulum">doublePendulum</a></p>
+                    <p>A program written in C++17 using opengl, glfw, glm, and imgui to simulate the motion of a double pendulum.</p>
+                    <p>Imgui is only used to configure the pendulum attributes such as its length, mass, and starting positions</p>
+                    <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dp1.png" alt="double pendulum in opengl" class="project-img">
+                    <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dpImgui.png" alt="double pendulum in opengl with imgui" class="project-img">
+                </template>
+            </div>
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>solar system</h3>
+                <p>an opengl program that simulates a 2D solar system</p>
+                <template>
+                    <h1>Solar System</h1>
+                    <p>source code: <a href="https://github.com/bmazx/solarSystem">solarSystem</a></p>
+                    <p>A program written in C++17 and opengl that simulate the gravitational orbits of the solar system with all eight planets plus pluto. Settings can be configured with Imgui to change the gravitational constant, or just some silly stuff.</p>
+                    <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ss1.png" alt="solar system in opengl" class="project-img">
+                    <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ssImgui.png" alt="abnormal solar system" class="project-img">
+                </template>
+            </div>
+            <div onclick="displayProject(this)" class="project-card">
+                <h3>conway's game of life</h3>
+                <p>you probably already know what this is</p>
+                <template>
+                    <h1>Conway's Game of Life</h1>
+                    <p>source code: <a href="https://github.com/bmazx/cgol">cgol</a></p>
+                    <p>Of course how can one's computer science career be complete without creating a conway's game of life simulation in a cave with nothing but scraps. This program is written in C++17 and opengl, settings can be configured with Imgui.</p>
+                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_scene.png" alt="game of life" class="project-img">
+                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_edit.png" alt="game of life with imgui editor" class="project-img">
+                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_gun.png" alt="game of life glider gun formation" class="project-img">
                 </template>
             </div>
         </window-box>
