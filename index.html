@@ -18,12 +18,12 @@
     </div>
     <div class="status">
         <p id="date">status</p>
-        <div class="status-button status-font-button" onclick="toggleFont()" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" onclick="toggleAudio()" title="toggle audio visability"></div>
+        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
+        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
     </div>
 </div>
 <div class="viewport">
-    <window-box id="side-menu" class="side-menu" name="Menu" btn="false">
+    <window-box class="side-menu" client-class="side-menu-client" name="Menu" btn="false">
         <details open>
             <summary>Navigation</summary>
             <a href="index.html"><div class="side-menu-text">Index</div></a>
@@ -73,9 +73,10 @@
             <label><input type="color" id="setting-button-active-color" value="#004466">button active color</label>
             <label><input type="color" id="setting-notify-color" value="#ddddfe">notify color</label>
         </window-box>
+        <window-box name="I know what you are" client-class="shinji-client"></window-box>
     </div>
     <div id="stack0" class="stack">
-        <window-box name="Window 1" overflowy="auto">
+        <window-box name="Window 1" minh="150px" overflowy="auto">
             <h1>Header 1</h1>
             <h2>Header 2</h2>
             <h3>Header 3</h3>

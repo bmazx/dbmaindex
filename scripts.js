@@ -70,7 +70,10 @@ class WindowBox extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ["name", "btn", "overflow", "overflowx", "overflowy"];
+        return [
+            "name", "btn", "overflow", "overflowx", "overflowy", "client-class",
+            "width", "height", "w", "h", "maxw", "maxh", "minw", "minh",
+        ];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -86,10 +89,33 @@ class WindowBox extends HTMLElement {
         }
         else if (name === "overflow") {
             this.clientElem.style.setProperty("overflow", newValue);
-        } else if (name === "overflowx") {
+        }
+        else if (name === "overflowx") {
             this.clientElem.style.setProperty("overflow-x", newValue);
-        } else if (name === "overflowy") {
+        }
+        else if (name === "overflowy") {
             this.clientElem.style.setProperty("overflow-y", newValue);
+        }
+        else if (name === "client-class") {
+            this.clientElem.classList.add(newValue);
+        }
+        else if (name === "width" || name === "w") {
+            this.clientElem.style.setProperty("width", newValue);
+        }
+        else if (name === "height" || name === "h") {
+            this.clientElem.style.setProperty("height", newValue);
+        }
+        else if (name === "maxw") {
+            this.clientElem.style.setProperty("max-width", newValue);
+        }
+        else if (name === "maxh") {
+            this.clientElem.style.setProperty("max-height", newValue);
+        }
+        else if (name === "minw") {
+            this.clientElem.style.setProperty("min-width", newValue);
+        }
+        else if (name === "minh") {
+            this.clientElem.style.setProperty("min-height", newValue);
         }
     }
 
@@ -117,19 +143,6 @@ class WindowBox extends HTMLElement {
     }
 }
 customElements.define("window-box", WindowBox);
-
-
-var useSystem = false;
-function toggleFont() {
-    useSystem = !useSystem;
-    if (useSystem) {
-        document.documentElement.style.setProperty("--font-family", "Arial, Helvetica, sans-serif");
-        sessionStorage.setItem("fonts", "Arial, Helvetica, sans-serif");
-    } else {
-        document.documentElement.style.setProperty("--font-family", "proggyClean, Arial, Helvetica, sans-serif");
-        sessionStorage.setItem("fonts", "proggyClean, Arial, Helvetica, sans-serif");
-    }
-}
 
 
 // index ----------------------------------------
@@ -315,10 +328,47 @@ if (document.body.id === "projects") {
 
 }
 
-const sideMenu = document.getElementById("side-menu");
-if (sideMenu) {
-    sideMenu.clientElem.style.setProperty("padding", "0");
+// status
+
+// toggle font
+const statusFontBtn = document.getElementById("status-toggle-font");
+let useSystem = sessionStorage.getItem("useSystemFont") === "true";
+
+function toggleFont() {
+    const font = useSystem
+        ? "Arial, Helvetica, sans-serif"
+        : "proggyClean, Arial, Helvetica, sans-serif";
+
+    document.documentElement.style.setProperty("--font-family", font);
 }
+
+statusFontBtn.addEventListener("click", () => {
+    useSystem = !useSystem;
+    sessionStorage.setItem("useSystemFont", useSystem);
+    toggleFont();
+});
+
+// apply saved preference when the page loads
+toggleFont();
+
+// toggle audio
+const statusAudioBtn = document.getElementById("status-toggle-audio");
+const enableAudioStorage = sessionStorage.getItem("enableAudio");
+let enableAudio = enableAudioStorage ? enableAudioStorage === "true" : true;
+enableAudio ? statusAudioBtn.style.setProperty("background-image", "")
+            : statusAudioBtn.style.setProperty("background-image", "url('images/audio-mute.png')");
+
+statusAudioBtn.addEventListener("click", () => {
+    enableAudio = !enableAudio;
+    sessionStorage.setItem("enableAudio", enableAudio);
+
+    if (enableAudio) {
+        statusAudioBtn.style.setProperty("background-image", "");
+    } else {
+        statusAudioBtn.style.setProperty("background-image", "url('images/audio-mute.png')");
+    }
+});
+
 
 // local storage
 const savedTheme = sessionStorage.getItem("theme");
@@ -326,13 +376,38 @@ if (savedTheme) {
     setTheme(savedTheme);
 }
 
-const savedFont = sessionStorage.getItem("fonts");
-if (savedFont) {
-    document.documentElement.style.setProperty("--font-family", savedFont);
-}
-
 updateDate();
 setInterval(updateDate, 1000);
+
+// add sounds
+const confirm = new Audio("audio/confirm2.wav");
+const click = new Audio("audio/click.wav");
+const click2 = new Audio("audio/click2.wav");
+
+document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, .status-button, button").forEach(elem => {
+    elem.addEventListener("click", () => {
+        if (!enableAudio)
+            return;
+        click2.currentTime = 0;
+        click2.play();
+    });
+});
+
+document.addEventListener("click", () => {
+    click.play().then(() => {
+        click.pause();
+        click.currentTime = 0;
+    });
+}, { once: true });
+
+document.querySelectorAll(".side-menu a, .side-menu button").forEach(elem => {
+    elem.addEventListener("mouseenter", () => {
+        if (!enableAudio)
+            return;
+        click.currentTime = 0;
+        click.play().catch(() => {});
+    });
+});
 
 // cursor follower
 /*
