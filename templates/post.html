@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}} - blog - dbmaindex</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="{{description}} - blog - dbmaindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../images/dbmaindex.png">
+</head>
+<body>
+<div class="header">
+    <div class="workspaces">
+        <a href="../index.html">dbmaindex</a>
+        <a href="../blog.html">blog</a>
+    </div>
+    <div class="header-title">
+    </div>
+    <div class="status">
+        <p id="date">status</p>
+        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
+        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+    </div>
+</div>
+<div class="viewport" style="display:flex; justify-content:center;">
+        <window-box client-class="blog-content" name="Blog - {{title}}" btn="false" style="flex:0.70;">
+            <h1>{{title}}</h1>
+            <p>{{date}}</p>
+            {{content}}
+        </window-box>
+</div>
+<script src="../scripts.js"></script>
+</body>
+</html>

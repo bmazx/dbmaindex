@@ -420,6 +420,11 @@ window-box[hidden] {
     background-color: var(--bg-color2);
 }
 
+.blog-content {
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
 #cursor-follow {
     display: none;
     width: 30px;

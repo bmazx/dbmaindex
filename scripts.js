@@ -356,7 +356,7 @@ const statusAudioBtn = document.getElementById("status-toggle-audio");
 const enableAudioStorage = sessionStorage.getItem("enableAudio");
 let enableAudio = enableAudioStorage ? enableAudioStorage === "true" : true;
 enableAudio ? statusAudioBtn.style.setProperty("background-image", "")
-            : statusAudioBtn.style.setProperty("background-image", "url('images/audio-mute.png')");
+            : statusAudioBtn.style.setProperty("background-image", "url('/images/audio-mute.png')");
 
 statusAudioBtn.addEventListener("click", () => {
     enableAudio = !enableAudio;
@@ -365,7 +365,7 @@ statusAudioBtn.addEventListener("click", () => {
     if (enableAudio) {
         statusAudioBtn.style.setProperty("background-image", "");
     } else {
-        statusAudioBtn.style.setProperty("background-image", "url('images/audio-mute.png')");
+        statusAudioBtn.style.setProperty("background-image", "url('/images/audio-mute.png')");
     }
 });
 
@@ -380,16 +380,23 @@ updateDate();
 setInterval(updateDate, 1000);
 
 // add sounds
-const confirm = new Audio("audio/confirm2.wav");
-const click = new Audio("audio/click.wav");
-const click2 = new Audio("audio/click2.wav");
+const confirm = new Audio("/audio/confirm2.wav");
+const click = new Audio("/audio/click.wav");
+const click2 = new Audio("/audio/click2.wav");
 
-document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, .status-button, button").forEach(elem => {
+document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, .status-button, button, .workspaces a").forEach(elem => {
     elem.addEventListener("click", (e) => {
         if (!enableAudio)
             return;
         click2.currentTime = 0;
         click2.play();
+        if (elem instanceof HTMLAnchorElement && elem.href) {
+            e.preventDefault();
+
+            setTimeout(() => {
+                window.location.href = elem.href;
+            }, 100);
+        }
     });
 });
 
