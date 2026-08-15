@@ -8,6 +8,7 @@
     --button-hover: #006080;
     --button-active: #004466;
     --notify-color: #ddddfe;
+    --link-color: #74c7ec;
 
     --shadow-blur: 8px;
     --shadow-spread: 2px;
@@ -31,6 +32,7 @@
     --button-hover: #8f1717;
     --button-active: #913f1c;
     --notify-color: #aaaaaa;
+    --link-color: #ad1f1f;
 }
 
 :root.catppuccin {
@@ -43,11 +45,13 @@
     --button-hover: #1e66f5;
     --button-active: #04a5e5;
     --notify-color: #e64553;
+    --link-color: #89b4fa;
 }
 
 @font-face {
     font-family: proggyClean;
     src: url("fonts/ProggyCleanNerdFont-Regular.ttf");
+    size-adjust: 120%;
 }
 
 html, body {
@@ -64,7 +68,7 @@ body {
 }
 
 a {
-    color: var(--hi-color);
+    color: var(--link-color);
 }
 
 button {
@@ -420,8 +424,16 @@ window-box[hidden] {
     background-color: var(--bg-color2);
 }
 
+.blog-content-window {
+    flex: 0.7;
+}
+
+.blog-content-window:hover {
+    animation: none;
+}
+
 .blog-content {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     line-height: 1.4;
 }
 

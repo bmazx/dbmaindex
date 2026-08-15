@@ -383,6 +383,7 @@ setInterval(updateDate, 1000);
 const confirm = new Audio("/audio/confirm2.wav");
 const click = new Audio("/audio/click.wav");
 const click2 = new Audio("/audio/click2.wav");
+const beep = new Audio("/audio/beep.wav");
 
 document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, .status-button, button, .workspaces a").forEach(elem => {
     elem.addEventListener("click", (e) => {
