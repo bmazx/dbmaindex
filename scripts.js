@@ -50,8 +50,11 @@ class WindowBox extends HTMLElement {
             this.hidden = true;
         });
         this.downBtn.addEventListener("click", () => {
-            const nextWin = this.nextElementSibling;
+            var nextWin = this.nextElementSibling;
 
+            while (nextWin && nextWin.hidden) {
+                nextWin = nextWin.nextElementSibling;
+            }
             if (!nextWin) {
                 return;
             }
@@ -59,8 +62,11 @@ class WindowBox extends HTMLElement {
             nextWin.after(this);
         });
         this.upBtn.addEventListener("click", () => {
-            const prevWin = this.previousElementSibling;
+            var prevWin = this.previousElementSibling;
 
+            while (prevWin && prevWin.hidden) {
+                prevWin = prevWin.previousElementSibling;
+            }
             if (!prevWin) {
                 return;
             }

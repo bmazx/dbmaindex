@@ -116,7 +116,6 @@ input[type=color] {
     display: flex;
     height: 3rem;
     margin: 0.5rem;
-    margin-bottom: 0;
     justify-content: space-between;
     align-items: center;
 }
@@ -182,23 +181,22 @@ a.workspaces-sel:hover {
 }
 
 .viewport {
-    margin: var(--outer-gap);
+    margin: 1rem 10%;
     display: flex;
     flex-wrap: wrap;
     gap: var(--inner-gap);
     height: 100%;
-    max-width: 2560px;
 }
 
 .master {
     display: flex;
     flex-direction: column;
-    flex: 0.55 1 270px;
+    flex: 0.75 1 300px;
     gap: var(--inner-gap);
 }
 
 .stack {
-    flex: 0.45 1 230px;
+    flex: 0.25 1 150px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -289,11 +287,12 @@ window-box[hidden] {
 .side-menu {
     flex: 0.15 1 80px;
     min-height: 500px;
-    overflow-x: hidden;
+    max-height: 600px;
 }
 
 .side-menu-client {
     padding: 0;
+    overflow-x: hidden;
 }
 
 .side-menu a,
@@ -393,14 +392,6 @@ window-box[hidden] {
     height: auto;
 }
 
-/* blog css */
-.blog-viewport {
-    display: flex;
-    gap: var(--inner-gap);
-    flex: 1;
-    margin: 0 4rem;
-}
-
 .blog-card {
     height: 1rem;
     padding: 0.5rem 0;
@@ -433,8 +424,12 @@ window-box[hidden] {
 }
 
 .blog-content {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     line-height: 1.4;
+}
+
+.about-client {
+    line-height: 1.2;
 }
 
 #cursor-follow {
@@ -472,9 +467,5 @@ window-box[hidden] {
 
     .window-client {
         overflow: visible;
-    }
-
-    .blog-viewport {
-        width: 100%;
     }
 }
