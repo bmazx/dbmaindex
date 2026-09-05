@@ -365,13 +365,14 @@ document.querySelectorAll(".side-menu a, .side-menu button, .side-menu summary, 
             return;
         click2.currentTime = 0;
         click2.play();
-        if (elem instanceof HTMLAnchorElement && elem.href) {
-            e.preventDefault();
 
-            setTimeout(() => {
-                window.location.href = elem.href;
-            }, 100);
-        }
+        // if (elem instanceof HTMLAnchorElement && elem.href) {
+        //     e.preventDefault();
+        //
+        //     setTimeout(() => {
+        //         window.location.href = elem.href;
+        //     }, 100);
+        // }
     });
 });
 

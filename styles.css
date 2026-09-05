@@ -369,6 +369,19 @@ window-box[hidden] {
     background-size: 100% 100%;
 }
 
+.social-icons {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    gap: 8px;
+}
+
+.social-icon {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--fg-color);
+}
+
 /* project css */
 .project-card {
     height: 3.75rem;
@@ -443,7 +456,7 @@ window-box[hidden] {
     background-size: 100% 100%;
 }
 
-@media (max-width: 630px) {
+@media (max-width: 730px) {
     html, body {
         height: auto;
     }
@@ -467,5 +480,10 @@ window-box[hidden] {
 
     .window-client {
         overflow: visible;
+    }
+
+    .status-button {
+        width: 1.5rem;
+        height: 1.5rem;
     }
 }
