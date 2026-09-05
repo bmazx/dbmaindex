@@ -17,14 +17,6 @@ class WindowBox extends HTMLElement {
         this.closeBtn.textContent = "X";
         this.winBtn.appendChild(this.closeBtn);
 
-        this.downBtn = document.createElement("button");
-        this.downBtn.textContent = "V";
-        this.winBtn.appendChild(this.downBtn);
-
-        this.upBtn = document.createElement("button");
-        this.upBtn.textContent = "^";
-        this.winBtn.appendChild(this.upBtn);
-
         this.winTitleElem.appendChild(this.winBtn);
 
         // client
@@ -48,30 +40,6 @@ class WindowBox extends HTMLElement {
 
         this.closeBtn.addEventListener("click", () => {
             this.hidden = true;
-        });
-        this.downBtn.addEventListener("click", () => {
-            var nextWin = this.nextElementSibling;
-
-            while (nextWin && nextWin.hidden) {
-                nextWin = nextWin.nextElementSibling;
-            }
-            if (!nextWin) {
-                return;
-            }
-
-            nextWin.after(this);
-        });
-        this.upBtn.addEventListener("click", () => {
-            var prevWin = this.previousElementSibling;
-
-            while (prevWin && prevWin.hidden) {
-                prevWin = prevWin.previousElementSibling;
-            }
-            if (!prevWin) {
-                return;
-            }
-
-            prevWin.before(this);
         });
     }
 
