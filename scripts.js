@@ -202,11 +202,9 @@ function displayBlog(card) {
 
 if (document.body.id === "home") {
     const settingCheckboxSelWin = document.getElementById("setting-checkbox-sel-win");
-    if (settingCheckboxSelWin.checked) {
-        document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
-    }
-    else {
-        document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+    const ssCheckboxSelWin = sessionStorage.getItem("setting-checkbox-sel-win");
+    if (ssCheckboxSelWin !== null) {
+        settingCheckboxSelWin.checked = ssCheckboxSelWin === "true";
     }
     settingCheckboxSelWin.addEventListener("input", e => {
         if (settingCheckboxSelWin.checked) {
@@ -215,86 +213,27 @@ if (document.body.id === "home") {
         else {
             document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
         }
+        sessionStorage.setItem("setting-checkbox-sel-win", settingCheckboxSelWin.checked);
     });
 
     const settingCheckboxWinShake = document.getElementById("setting-checkbox-win-shake");
-    document.body.classList.toggle("animations-off", !settingCheckboxWinShake.checked);
+    const ssCheckboxWinShake = sessionStorage.getItem("setting-checkbox-win-shake");
+    if (ssCheckboxWinShake !== null) {
+        settingCheckboxWinShake.checked = ssCheckboxWinShake === "true";
+    }
     settingCheckboxWinShake.addEventListener("input", e => {
         document.body.classList.toggle("animations-off", !settingCheckboxWinShake.checked);
+        sessionStorage.setItem("setting-checkbox-win-shake", settingCheckboxWinShake.checked);
     });
 
     const settingCheckboxEnableShadows = document.getElementById("setting-checkbox-shadows");
-    document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows.checked);
+    const ssCheckboxEnableShadow = sessionStorage.getItem("setting-checkbox-shadows");
+    if (ssCheckboxEnableShadow !== null) {
+        settingCheckboxEnableShadows.checked = ssCheckboxEnableShadow === "true";
+    }
     settingCheckboxEnableShadows.addEventListener("input", e => {
         document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows.checked);
-    });
-
-
-    const settingOuterGap = document.getElementById("setting-outer-gap");
-    settingOuterGap.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--outer-gap", `${e.target.value}px`);
-    });
-
-    const settingInnerGap = document.getElementById("setting-inner-gap");
-    settingInnerGap.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--inner-gap", `${e.target.value}px`);
-    });
-
-    const settingBorderWidth = document.getElementById("setting-border-width");
-    settingBorderWidth.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--border-width", `${e.target.value}px`);
-    });
-
-    const settingShadowBlur = document.getElementById("setting-shadow-blur");
-    settingShadowBlur.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--shadow-blur", `${e.target.value}px`);
-    });
-
-    const settingShadowSpread = document.getElementById("setting-shadow-spread");
-    settingShadowSpread.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--shadow-spread", `${e.target.value}px`);
-    });
-
-
-    const settingColorBg = document.getElementById("setting-bg-color");
-    settingColorBg.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--bg-color", e.target.value);
-    });
-
-    const settingColorBg2 = document.getElementById("setting-bg2-color");
-    settingColorBg2.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--bg-color2", e.target.value);
-        document.documentElement.style.setProperty("--win-idle", e.target.value);
-    });
-
-    const settingColorFg = document.getElementById("setting-fg-color");
-    settingColorFg.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--fg-color", e.target.value);
-    });
-
-    const settingColorFg2 = document.getElementById("setting-fg2-color");
-    settingColorFg2.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--fg-color2", e.target.value);
-    });
-
-    const settingColorMain = document.getElementById("setting-hi-color");
-    settingColorMain.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--hi-color", e.target.value);
-    });
-
-    const settingColorButtonHover = document.getElementById("setting-button-hover-color");
-    settingColorButtonHover.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--button-hover", e.target.value);
-    });
-
-    const settingColorButtonActive = document.getElementById("setting-button-active-color");
-    settingColorButtonActive.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--button-active", e.target.value);
-    });
-
-    const settingColorNotify = document.getElementById("setting-notify-color");
-    settingColorNotify.addEventListener("input", e => {
-        document.documentElement.style.setProperty("--notify-color", e.target.value);
+        sessionStorage.setItem("setting-checkbox-shadows", settingCheckboxEnableShadows.checked);
     });
 }
 
@@ -311,7 +250,7 @@ let useSystem = sessionStorage.getItem("useSystemFont") === "true";
 function toggleFont() {
     const font = useSystem
         ? "Arial, Helvetica, sans-serif"
-        : "proggyClean, Arial, Helvetica, sans-serif";
+        : "pixelCode, Arial, Helvetica, sans-serif";
 
     document.documentElement.style.setProperty("--font-family", font);
 }
@@ -349,6 +288,23 @@ const savedTheme = sessionStorage.getItem("theme");
 if (savedTheme) {
     setTheme(savedTheme);
 }
+
+const settingCheckboxSelWin = sessionStorage.getItem("setting-checkbox-sel-win") === "true";
+if (settingCheckboxSelWin) {
+    document.documentElement.style.setProperty("--win-idle", "var(--bg-color2)");
+}
+else {
+    document.documentElement.style.setProperty("--win-idle", "var(--hi-color)");
+}
+
+const ssCheckboxWinShake = sessionStorage.getItem("setting-checkbox-win-shake");
+const settingCheckboxWinShake = ssCheckboxWinShake !== null ? ssCheckboxWinShake === "true" : true;
+document.body.classList.toggle("animations-off", !settingCheckboxWinShake);
+
+const ssCheckboxEnableShadow = sessionStorage.getItem("setting-checkbox-shadows");
+const settingCheckboxEnableShadows = ssCheckboxEnableShadow !== null ? ssCheckboxEnableShadow === "true" : true;
+document.body.classList.toggle("shadow-off", !settingCheckboxEnableShadows);
+
 
 updateDate();
 setInterval(updateDate, 1000);

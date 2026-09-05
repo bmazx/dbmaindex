@@ -19,7 +19,7 @@
 
     --border-width: 2.5px;
 
-    --font-family: proggyClean, Arial, Helvetica, sans-serif;
+    --font-family: pixelCode, Arial, Helvetica, sans-serif;
 }
 
 :root.smileos {
@@ -49,9 +49,9 @@
 }
 
 @font-face {
-    font-family: proggyClean;
-    src: url("fonts/ProggyCleanNerdFont-Regular.ttf");
-    size-adjust: 120%;
+    font-family: pixelCode;
+    src: url("fonts/PixelCode.ttf");
+    size-adjust: 85%;
 }
 
 html, body {
@@ -263,6 +263,7 @@ window-box:hover {
 .window-title-buttons {
     display: flex;
     flex-direction: row-reverse;
+    align-items: center;
 }
 
 .window-title button {
@@ -382,10 +383,14 @@ window-box[hidden] {
     fill: var(--fg-color);
 }
 
+.social-icon:hover {
+    filter: brightness(1.3);
+}
+
 /* project css */
 .project-card {
-    height: 3.75rem;
-    overflow: hidden;
+    font-size: 0.9rem;
+
     padding-left: 0.5rem;
     display: flex;
     gap: 16px;
