@@ -27,7 +27,7 @@
 </div>
 <div class="viewport">
     <div id="stack0" class="stack" style="flex: 0.3 1 200px;">
-        <window-box id="project-list" name="Projects List" btn="false" overflow="auto" style="flex:1; max-height: 800px;">
+        <window-box id="project-list" name="Projects List" btn="false" overflow="auto" style="flex:1; min-height:300px;">
             <div onclick="displayProject(this)" class="project-card">
                 <h3>Levikno</h3>
                 <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
@@ -102,7 +102,7 @@
         </window-box>
     </div>
     <div class="master" style="flex: 0.7 1 200px;">
-        <window-box id="project-info" name="Projects Info" btn="false">
+        <window-box id="project-info" name="Projects Info" overflow="auto" btn="false" style="height:100%;min-height:500px;">
             <p>click on a project to learn more about it</p>
         </window-box>
     </div>

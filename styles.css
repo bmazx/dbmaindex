@@ -64,7 +64,7 @@ body {
     display: flex;
     flex-direction: column;
     color: var(--fg-color);
-    background-color: #000;
+    background-color: #1d1d1d;
 }
 
 a {
@@ -442,8 +442,12 @@ window-box[hidden] {
 }
 
 .blog-content {
-    font-size: 1.2rem;
-    line-height: 1.4;
+    font-size: 1.3rem;
+    line-height: 1.2;
+}
+
+.post-viewport {
+    margin: 1rem 15%;
 }
 
 .about-client {
@@ -464,6 +468,7 @@ window-box[hidden] {
 @media (max-width: 730px) {
     html, body {
         height: auto;
+        font-size: 0.95rem;
     }
 
     .viewport,
@@ -490,5 +495,13 @@ window-box[hidden] {
     .status-button {
         width: 1.5rem;
         height: 1.5rem;
+    }
+
+    .post-viewport {
+        margin: 5%;
+    }
+
+    .blog-content {
+        font-size: 1rem;
     }
 }

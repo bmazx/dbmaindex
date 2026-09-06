@@ -22,12 +22,12 @@
         <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
     </div>
 </div>
-<div class="viewport" style="display:flex; justify-content:center;">
-        <window-box class="blog-content-window" client-class="blog-content" name="Blog - {{title}}" btn="false">
-            <h1>{{title}}</h1>
-            <p>{{date}}</p>
-            {{content}}
-        </window-box>
+<div class="post-viewport" style="display:flex; justify-content:center;">
+    <div class="blog-content">
+        <h1>{{title}}</h1>
+        <p>{{date}}</p>
+        {{content}}
+    </div>
 </div>
 <script src="../scripts.js"></script>
 </body>
