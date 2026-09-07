@@ -2,13 +2,14 @@
     --bg-color: #1d1d1d;
     --bg-color2: #3d3d3d;
     --fg-color: #fffae5;
-    --color-blue: #74c7ec;
     --color-pink: #feb4d5;
-    --color-green: #a4fea5;
-    --color-orange: #fab387;
     --color-red: #f38ba8;
-    --color-purple: #cba6f7;
+    --color-orange: #fab387;
+    --color-yellow: #f9e2af;
+    --color-green: #a4fea5;
     --color-cyan: #89dceb;
+    --color-blue: #74c7ec;
+    --color-purple: #cba6f7;
     --font-family: mainFont, serif;
 }
 

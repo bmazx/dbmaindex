@@ -59,3 +59,26 @@ function displayProject(card) {
     card.style.color = "var(--color-green)";
     card.id = "sel-card";
 }
+
+// index ----------------------------------------
+
+if (document.body.id === "index") {
+    const mainTitle = document.getElementById("main-title");
+    const titleSubtext = document.getElementById("main-title-subtext");
+    mainTitle.addEventListener("click", () => {
+        sessionStorage.setItem("titleClicked", "false");
+    });
+
+    const titleClicked = sessionStorage.getItem("titleClicked");
+    if (titleClicked !== null && titleClicked === "false") {
+        const num = Math.floor(Math.random() * 10);
+        if (num == 0) {
+            titleSubtext.textContent = "read my books";
+        }
+    }
+
+    const colors = [ "pink", "red", "orange", "green", "yellow", "cyan", "purple" ];
+    const date = new Date();
+    const day = date.getDay();
+    titleSubtext.style.color = `var(--color-${colors[day]})`
+}
