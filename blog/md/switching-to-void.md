@@ -23,19 +23,9 @@ But if something breaks, why don't you just fix it yourself?
 
 I may have lots of time to use Arch and configure it for hours, but manually fixing packages and dependencies is beyond my expertise and interests.
 
-## The AUR Incident
-
-If you didn't know before, Arch has a separate unofficial repository called the Arch User Repository (AUR) maintained by the community. Using the AUR is great if a package you need isn't in the official repositories, chances are they can be found in the AUR.
-
-Unfortunately, as mentioned before, the AUR is an unofficial repository maintained only by the community. This allows any person to contribute to any package without having any background checks or credibility, or at least this was how it worked before the AUR malware attacks.
-
-About two months ago in June, the AUR suddenly faced a wave of hijack attacks, basically a bunch of packages and PKGBUILD scripts in the AUR had been hijacked with malicious code that could steal credentials or install rootkits if installed or updated. Roughly 1500 packages were infected, most of which are orphaned packages. This meant that the packages were maintained by no one and could be taken in by anyone from any background which was the method the hijackers used to affect 1500 packages in the AUR.
-
-As a frequent user of AUR packages, this wasn't an ideal situation at the time.
-
 ## Switching Distros
 
-So with the trouble of Arch's bleeding edge rolling release system and the AUR attack, it prompted me that right now would be a great time to reinstall since I also wanted to clear out my storage. I decided to switch to Void Linux since it basically has almost the same features as Arch, with the difference being that Void focuses more on a stable rolling release model rather than bleeding edge which for the most part fixes random apps breaking.
+So with the trouble of Arch's bleeding edge rolling release system, it prompted me that right now would be a great time to reinstall since I also wanted to clear out my storage. I decided to switch to Void Linux since it basically has almost the same features as Arch, with the difference being that Void focuses more on a stable rolling release model rather than bleeding edge which for the most part fixes random apps breaking.
 
 Why not use other distros such as Artix or NixOS.
 

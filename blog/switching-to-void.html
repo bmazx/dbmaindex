@@ -12,17 +12,16 @@
 <div class="header">
     <div class="workspaces">
         <a href="../index.html">dbmaindex</a>
-        <a href="../blog.html">blog</a>
-    </div>
-    <div class="header-title">
+        <a href="../blog.html">Blog</a>
     </div>
     <div class="status">
-        <p id="date">status</p>
-        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+        <button id="status-toggle-font" class="status-button" type="button">
+            <svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg>
+        </button>
+        <p id="date" style="margin-left:0.5rem;">status</p>
     </div>
 </div>
-<div class="post-viewport" style="display:flex; justify-content:center;">
+<div class="post-viewport">
     <div class="blog-content">
         <h1>Switching to Void Linux</h1>
         <p>2026-08-13</p>
@@ -35,13 +34,8 @@
 <p>To be fair, this was nothing uncommon within the Arch ecosystem, a random package would break from time to time due to some dependency error, and would be fixed eventually. For this scenario, I wasn&#39;t all that bothered with blender breaking unexpectedly, this was just a minor inconvenience at most. In fact, I have had other occurrences as well where packages would suddenly break one day, one time when I was using <a href="https://lmms.io/">lmms</a> and suddenly one of its built-in synthesizers stopped working (due to a dependency issue again). And another time when pulseaudio, my audio server, stopped working and my computer couldn&#39;t play sound (although that was probably just because pulseaudio was old and I just switched to pipewire instead). I didn&#39;t mind when a program broke sometimes, but what I did mind was how long it took for it to be fixed, and that for some reason could take months which was annoying.</p>
 <p>But if something breaks, why don&#39;t you just fix it yourself?</p>
 <p>I may have lots of time to use Arch and configure it for hours, but manually fixing packages and dependencies is beyond my expertise and interests.</p>
-<h2>The AUR Incident</h2>
-<p>If you didn&#39;t know before, Arch has a separate unofficial repository called the Arch User Repository (AUR) maintained by the community. Using the AUR is great if a package you need isn&#39;t in the official repositories, chances are they can be found in the AUR.</p>
-<p>Unfortunately, as mentioned before, the AUR is an unofficial repository maintained only by the community. This allows any person to contribute to any package without having any background checks or credibility, or at least this was how it worked before the AUR malware attacks.</p>
-<p>About two months ago in June, the AUR suddenly faced a wave of hijack attacks, basically a bunch of packages and PKGBUILD scripts in the AUR had been hijacked with malicious code that could steal credentials or install rootkits if installed or updated. Roughly 1500 packages were infected, most of which are orphaned packages. This meant that the packages were maintained by no one and could be taken in by anyone from any background which was the method the hijackers used to affect 1500 packages in the AUR.</p>
-<p>As a frequent user of AUR packages, this wasn&#39;t an ideal situation at the time.</p>
 <h2>Switching Distros</h2>
-<p>So with the trouble of Arch&#39;s bleeding edge rolling release system and the AUR attack, it prompted me that right now would be a great time to reinstall since I also wanted to clear out my storage. I decided to switch to Void Linux since it basically has almost the same features as Arch, with the difference being that Void focuses more on a stable rolling release model rather than bleeding edge which for the most part fixes random apps breaking.</p>
+<p>So with the trouble of Arch&#39;s bleeding edge rolling release system, it prompted me that right now would be a great time to reinstall since I also wanted to clear out my storage. I decided to switch to Void Linux since it basically has almost the same features as Arch, with the difference being that Void focuses more on a stable rolling release model rather than bleeding edge which for the most part fixes random apps breaking.</p>
 <p>Why not use other distros such as Artix or NixOS.</p>
 <p>Artix is just Arch but without <a href="https://en.wikipedia.org/wiki/Systemd">systemd</a>, it still uses the same package manager and repository as Arch so there would be little benefit in switching. As for NixOS, I actually use NixOS for homelabbing on another system. Its declarative nature allows for good configurability and reproducibility, but that also makes it not support <a href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FHS</a> which is what I prefer using for a daily driver.</p>
 <h2>Void</h2>

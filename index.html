@@ -10,72 +10,39 @@
 </head>
 <body id="home">
 <div class="header">
-    <div class="workspaces">
-        <h1><a href="index.html">dbmaindex</a></h1>
-    </div>
-    <div class="header-title">
-        v1.0
+    <div class="main-title">
+        <a href="index.html"><h1>dbmaindex</h1></a>
+        <p>v2.0</p>
     </div>
     <div class="status">
-        <p id="date">status</p>
-        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+        <button id="status-toggle-font" class="status-button" type="button">
+            <svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg>
+        </button>
+        <p id="date" style="margin-left:0.5rem;">status</p>
     </div>
 </div>
 <div class="viewport">
-    <window-box class="side-menu" client-class="side-menu-client" name="Menu" btn="false">
-        <details open>
-            <summary>Navigation</summary>
-            <a href="index.html"><div class="side-menu-text">Index</div></a>
-            <a href="projects.html"><div class="side-menu-text">Projects</div></a>
-            <a href="contact.html"><div class="side-menu-text">Contact</div></a>
-            <a href="blog.html"><div class="side-menu-text">Blog</div></a>
-            <a href="about.html"><div class="side-menu-text">About</div></a>
-        </details>
-        <details>
-            <summary>Themes</summary>
-                <button onclick="setTheme('default')" type="button"><div class="side-menu-text">default</div></button>
-                <button onclick="setTheme('smileos')" type="button"><div class="side-menu-text">smileOS</div></button>
-                <button onclick="setTheme('catppuccin')" type="button"><div class="side-menu-text">catppuccin</div></button>
-        </details>
-        <details>
-            <summary>Windows</summary>
-                <button onclick="openSettings()" type="button"><div class="side-menu-text">theme</div></button>
-        </details>
-    </window-box>
-    <div class="master">
-        <window-box id="window0" name="Welcome" btn="false">
-            <p>Hi, Hello! Welcome to dbmaindex</p>
-            <p>I'm <a href="about.html#about-dbma">dbma</a>, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere.</p>
-            <p>don't like how the layout looks, edit the theme here <button onclick="openSettings()" type="button">theme</button></p>
-        </window-box>
-        <window-box id="window-settings" name="theme" hidden>
-            <label><input type="checkbox" id="setting-checkbox-sel-win" checked>distinguish highlighted window</label>
-            <label><input type="checkbox" id="setting-checkbox-win-shake" checked>window shake animation</label>
-            <label><input type="checkbox" id="setting-checkbox-shadows" checked>enable shadows</label>
-        </window-box>
-        <window-box name="I know what you are" client-class="shinji-client"></window-box>
+    <div class="side-nav">
+        <div class="side-nav-links">
+            <a href="projects.html">Projects</a>
+            <a href="blog.html">Blog</a>
+            <a href="about.html">About</a>
+        </div>
+        <div class="side-nav-socials">
+            <a href="mailto:brianma360@gmail.com"><svg class="side-nav-socials-icon" fill="#000000"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  width="800px" height="800px" viewBox="0 0 512 512" xml:space="preserve"><title>Email</title><g id="7935ec95c421cee6d86eb22ecd12600d"> <path style="display: inline;" d="M170.591,239.406L1.584,429.263c-0.433-1.911-1.084-3.759-1.084-5.852V88.589 c0-2.541,0.71-4.837,1.356-7.144L170.591,239.406z M493.987,65.524c-1.238-0.277-2.424-0.876-3.79-0.876H21.819 c-1.297,0-2.456,0.599-3.769,0.876l237.961,222.734L493.987,65.524z M262.808,313.021c-1.954,1.869-4.372,2.777-6.797,2.777 c-2.419,0-4.842-0.908-6.775-2.777l-62.21-58.217L16.656,446.145c1.698,0.523,3.364,1.207,5.163,1.207h468.378 c1.89,0,3.534-0.684,5.243-1.207L325.082,254.804L262.808,313.021z M341.494,239.406l168.98,189.836 c0.459-1.911,1.025-3.759,1.025-5.831V88.589c0-2.499-0.62-4.837-1.26-7.133L341.494,239.406z"></path></g></svg></a>
+            <a href="https://github.com/bmazx" target="_blank"><svg class="side-nav-socials-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
+            <a href="https://discordapp.com/users/670023038963810329" target="_blank"><svg class="side-nav-socials-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Discord</title><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></svg></a>
+        </div>
     </div>
-    <div id="stack1" class="stack">
-        <window-box name="Updates">
-            <p>2026-8-15:</p>
-            <ul>
-                <li>new blog post: "Switching to Void Linux"</li>
-                <li>minor style changes</li>
-            </ul>
-        </window-box>
-        <window-box name="Status Message">
-            <p>2026-8-10:</p>
-            <p>read my books</p>
-            <p>- dbma</p>
-        </window-box>
-        <window-box name="Links">
-            <div class="social-icons">
-            <a href="mailto:brianma360@gmail.com"><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Gmail</title><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg><a/>
-            <a href="https://github.com/bmazx"><svg class="social-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></a>
-            </div>
-        </window-box>
+    <div class="main-content">
+        <h1>Index</h1>
+        <p>Hi, Hello! Welcome to dbmaindex</p>
+        <p>I'm <a href="about.html#about-dbma">dbma</a>, I like computer graphics, simulations, linux, embedded systems, and game development. This site is where I collect my projects, share my ideas and notes, or just thoughts I wanted to write somewhere.</p>
+        <hr>
     </div>
+</div>
+<div style="display:flex;justify-content:center;margin-top: auto;">
+    <p>end of manifest</p>
 </div>
 <script src="scripts.js"></script>
 </body>

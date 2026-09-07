@@ -13,32 +13,30 @@
     <div class="workspaces">
         <a href="index.html">dbmaindex</a>
         <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
         <a class="workspaces-sel" href="blog.html">Blog</a>
         <a href="about.html">About</a>
     </div>
-    <div class="header-title">
-    </div>
     <div class="status">
-        <p id="date">status</p>
-        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+        <button id="status-toggle-font" class="status-button" type="button">
+            <svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg>
+        </button>
+        <p id="date" style="margin-left:0.5rem;">status</p>
     </div>
 </div>
 <div class="viewport" style="display:flex; justify-content:center;">
-    <window-box id="blog-list" name="Blog List" btn="false" overflow="auto" style="flex:0.6;">
+    <div id="blog-list" class="blog-list">
         
         <a href="blog/switching-to-void.html" class="blog-card">
-            <p><b>2026-08-13</b></p>
-            <p>Switching to Void Linux</p>
+            <h3><b>2026-08-13</b></h3>
+            <h2>Switching to Void Linux</h2>
         </a>
     
         <a href="blog/first-blog.html" class="blog-card">
-            <p><b>2026-08-10</b></p>
-            <p>First Blog</p>
+            <h3><b>2026-08-10</b></h3>
+            <h2>First Blog</h2>
         </a>
     
-    </window-box>
+    </div>
 </div>
 <script src="scripts.js"></script>
 </body>

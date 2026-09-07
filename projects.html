@@ -8,103 +8,101 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="images/dbmaindex.png">
 </head>
-<body id="projects">
-<div class="header">
+<body style="margin:0;">
+<div class="header" style="margin: 0.5rem 1rem;">
     <div class="workspaces">
         <a href="index.html">dbmaindex</a>
         <a class="workspaces-sel" href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
         <a href="blog.html">Blog</a>
         <a href="about.html">About</a>
     </div>
     <div class="header-title">
     </div>
     <div class="status">
-        <p id="date">status</p>
-        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+        <button id="status-toggle-font" class="status-button" type="button">
+            <svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg>
+        </button>
+        <p id="date" style="margin-left:0.5rem;">status</p>
     </div>
 </div>
-<div class="viewport">
-    <div id="stack0" class="stack" style="flex: 0.3 1 200px;">
-        <window-box id="project-list" name="Projects List" btn="false" overflow="auto" style="flex:1; min-height:300px;">
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>Levikno</h3>
-                <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
-                <template>
-                    <h1>Levikno</h1>
-                    <p>source code: <a href="https://github.com/bmazx/levikno">levikno</a></p>
-                    <p>Levikno is a graphics framework built in C99 for game development and multimedia applications. The Levikno library is built on top of OpenGL and Vulkan and is designed to support multiple graphics APIs.</p>
-                    <p>The core API structure of levikno is designed similar to Vulkan's API calls including pipelines, buffers, descriptor layouts/sets and command buffers used for rendering graphics.</p>
-                    <p><b>Note: levikno is in an active rewrite from its original library written in C++17<br>
-                          you can view the original source code on github at <a href="https://github.com/bmazx/levikno-legacy/tree/main">levikno-legacy</a>.</b></p>
-                    <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" class="project-img">
-                </template>
-            </div>
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>lvn_cma</h3>
-                <p>custom memory arena and pool allocators written in C99 with custom allocation alignment requirements</p>
-                <template>
-                    <h1>lvn_cma (custom memory allocators)</h1>
-                    <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_cma.h">lvn_cma.h</a></p>
-                    <p>lvn_cma is a single header file library written in C99 for custom memory allocation management utilizing memory pools and memory arenas to handle memory allocations.</p>
-                    <p>Internally, both the pool and arena use a memory block structure which stores the actual memory allocation, blocks also act like linked-lists allowing memory blocks to be chained for pool/arena allocation growth.</p>
-                    <p>With that said, pools and arenas determine the behavior of how memory allocations should be made to the blocks. Pools allow the user to request allocations of the same size minimizing fragmentation and allowing memory to be freed and reused.</p>
-                    <p>The arena allows the user to request their own sized allocations, additional arena features include arena resets and arena marks.</p>
-                    <p>Both the pool and arena allow specific alignment requirements allowing the user to pass in a more strict memory alignment.</p>
-                </template>
-            </div>
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>lvn_gmath</h3>
-                <p>a simple graphics library written in C for graphics programing and video game development</p>
-                <template>
-                    <h1>lvn_gmath</h1>
-                    <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_gmath.h">lvn_gmath.h</a></p>
-                    <p>lvn_gmath is a single header math library written in C99 for graphics math including vectors and matrices math.</p>
-                    <p>Supports vector/matrix types of floating point numbers, signed and unsigned 8 to 64-bit integers types.</p>
-                </template>
-            </div>
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>double pendulum</h3>
-                <p>an opengl program that simulates a double pendulum</p>
-                <template>
-                    <h1>Double Pendulum</h1>
-                    <p>source code: <a href="https://github.com/bmazx/doublePendulum">doublePendulum</a></p>
-                    <p>A program written in C++17 using opengl, glfw, glm, and imgui to simulate the motion of a double pendulum.</p>
-                    <p>Imgui is only used to configure the pendulum attributes such as its length, mass, and starting positions</p>
-                    <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dp1.png" alt="double pendulum in opengl" class="project-img">
-                    <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dpImgui.png" alt="double pendulum in opengl with imgui" class="project-img">
-                </template>
-            </div>
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>solar system</h3>
-                <p>an opengl program that simulates a 2D solar system</p>
-                <template>
-                    <h1>Solar System</h1>
-                    <p>source code: <a href="https://github.com/bmazx/solarSystem">solarSystem</a></p>
-                    <p>A program written in C++17 and opengl that simulate the gravitational orbits of the solar system with all eight planets plus pluto. Settings can be configured with Imgui to change the gravitational constant, or just some silly stuff.</p>
-                    <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ss1.png" alt="solar system in opengl" class="project-img">
-                    <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ssImgui.png" alt="abnormal solar system" class="project-img">
-                </template>
-            </div>
-            <div onclick="displayProject(this)" class="project-card">
-                <h3>conway's game of life</h3>
-                <p>you probably already know what this is</p>
-                <template>
-                    <h1>Conway's Game of Life</h1>
-                    <p>source code: <a href="https://github.com/bmazx/cgol">cgol</a></p>
-                    <p>Of course how can one's computer science career be complete without creating a conway's game of life simulation in a cave with nothing but scraps. This program is written in C++17 and opengl, settings can be configured with Imgui.</p>
-                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_scene.png" alt="game of life" class="project-img">
-                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_edit.png" alt="game of life with imgui editor" class="project-img">
-                    <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_gun.png" alt="game of life glider gun formation" class="project-img">
-                </template>
-            </div>
-        </window-box>
+<div class="project-viewport">
+    <div class="project-list">
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>Levikno</h3>
+            <p>a simple graphics library written in C for Vulkan and OpenGL application programing and video game development</p>
+            <template>
+                <h1>Levikno</h1>
+                <p>source code: <a href="https://github.com/bmazx/levikno">levikno</a></p>
+                <p>Levikno is a graphics framework built in C99 for game development and multimedia applications. The Levikno library is built on top of OpenGL and Vulkan and is designed to support multiple graphics APIs.</p>
+                <p>The core API structure of levikno is designed similar to Vulkan's API calls including pipelines, buffers, descriptor layouts/sets and command buffers used for rendering graphics.</p>
+                <p><b>Note: levikno is in an active rewrite from its original library written in C++17<br>
+                      you can view the original source code on github at <a href="https://github.com/bmazx/levikno-legacy/tree/main">levikno-legacy</a>.</b></p>
+                <img src="images/projects/levikno/levikno-spheres.png" alt="PBR scene of spheres in levikno" class="project-img">
+            </template>
+        </div>
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>lvn_cma</h3>
+            <p>custom memory arena and pool allocators written in C99 with custom allocation alignment requirements</p>
+            <template>
+                <h1>lvn_cma (custom memory allocators)</h1>
+                <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_cma.h">lvn_cma.h</a></p>
+                <p>lvn_cma is a single header file library written in C99 for custom memory allocation management utilizing memory pools and memory arenas to handle memory allocations.</p>
+                <p>Internally, both the pool and arena use a memory block structure which stores the actual memory allocation, blocks also act like linked-lists allowing memory blocks to be chained for pool/arena allocation growth.</p>
+                <p>With that said, pools and arenas determine the behavior of how memory allocations should be made to the blocks. Pools allow the user to request allocations of the same size minimizing fragmentation and allowing memory to be freed and reused.</p>
+                <p>The arena allows the user to request their own sized allocations, additional arena features include arena resets and arena marks.</p>
+                <p>Both the pool and arena allow specific alignment requirements allowing the user to pass in a more strict memory alignment.</p>
+            </template>
+        </div>
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>lvn_gmath</h3>
+            <p>a simple graphics library written in C for graphics programing and video game development</p>
+            <template>
+                <h1>lvn_gmath</h1>
+                <p>source code: <a href="https://github.com/bmazx/lvnhof/blob/master/lvn_gmath.h">lvn_gmath.h</a></p>
+                <p>lvn_gmath is a single header math library written in C99 for graphics math including vectors and matrices math.</p>
+                <p>Supports vector/matrix types of floating point numbers, signed and unsigned 8 to 64-bit integers types.</p>
+            </template>
+        </div>
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>double pendulum</h3>
+            <p>an opengl program that simulates a double pendulum</p>
+            <template>
+                <h1>Double Pendulum</h1>
+                <p>source code: <a href="https://github.com/bmazx/doublePendulum">doublePendulum</a></p>
+                <p>A program written in C++17 using opengl, glfw, glm, and imgui to simulate the motion of a double pendulum.</p>
+                <p>Imgui is only used to configure the pendulum attributes such as its length, mass, and starting positions</p>
+                <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dp1.png" alt="double pendulum in opengl" class="project-img">
+                <img src="https://raw.githubusercontent.com/bmazx/doublePendulum/refs/heads/main/.github/dpImgui.png" alt="double pendulum in opengl with imgui" class="project-img">
+            </template>
+        </div>
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>solar system</h3>
+            <p>an opengl program that simulates a 2D solar system</p>
+            <template>
+                <h1>Solar System</h1>
+                <p>source code: <a href="https://github.com/bmazx/solarSystem">solarSystem</a></p>
+                <p>A program written in C++17 and opengl that simulate the gravitational orbits of the solar system with all eight planets plus pluto. Settings can be configured with Imgui to change the gravitational constant, or just some silly stuff.</p>
+                <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ss1.png" alt="solar system in opengl" class="project-img">
+                <img src="https://raw.githubusercontent.com/bmazx/solarSystem/refs/heads/main/.github/ssImgui.png" alt="abnormal solar system" class="project-img">
+            </template>
+        </div>
+        <div onclick="displayProject(this)" class="project-card">
+            <h3>conway's game of life</h3>
+            <p>you probably already know what this is</p>
+            <template>
+                <h1>Conway's Game of Life</h1>
+                <p>source code: <a href="https://github.com/bmazx/cgol">cgol</a></p>
+                <p>Of course how can one's computer science career be complete without creating a conway's game of life simulation in a cave with nothing but scraps. This program is written in C++17 and opengl, settings can be configured with Imgui.</p>
+                <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_scene.png" alt="game of life" class="project-img">
+                <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_edit.png" alt="game of life with imgui editor" class="project-img">
+                <img src="https://raw.githubusercontent.com/bmazx/cgol/refs/heads/main/.github/cgol_gun.png" alt="game of life glider gun formation" class="project-img">
+            </template>
+        </div>
     </div>
-    <div class="master" style="flex: 0.7 1 200px;">
-        <window-box id="project-info" name="Projects Info" overflow="auto" btn="false" style="height:100%;min-height:500px;">
+    <div class="project-content" id="project-content">
+        <div class="project-main-content" id="project-info">
             <p>click on a project to learn more about it</p>
-        </window-box>
+        </div>
     </div>
 </div>
 <script src="scripts.js"></script>

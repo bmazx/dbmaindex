@@ -47,8 +47,8 @@ function escapeHtml(value) {
 function createBlogCard(link, date, title) {
     return `
         <a href="${link}" class="blog-card">
-            <p><b>${date}</b></p>
-            <p>${title}</p>
+            <h3><b>${date}</b></h3>
+            <h2>${title}</h2>
         </a>
     `;
 }

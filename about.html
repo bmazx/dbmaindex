@@ -13,35 +13,33 @@
     <div class="workspaces">
         <a href="index.html">dbmaindex</a>
         <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
         <a href="blog.html">Blog</a>
         <a class="workspaces-sel" href="about.html">About</a>
     </div>
-    <div class="header-title">
-    </div>
     <div class="status">
-        <p id="date">status</p>
-        <div class="status-button status-font-button" id="status-toggle-font" title="toggle font visability"></div>
-        <div class="status-button status-audio-button" id="status-toggle-audio" title="toggle audio"></div>
+        <button id="status-toggle-font" class="status-button" type="button">
+            <svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg>
+        </button>
+        <p id="date" style="margin-left:0.5rem;">status</p>
     </div>
 </div>
-<div class="viewport" style="justify-content: center;">
-    <div class="master" style="flex:0.7;">
-        <window-box id="window0" client-class="about-client" name="About" btn="false" style="flex:1;">
+<div class="viewport">
+    <div style="display:flex; justify-content: center;">
+        <div class="about-content">
             <h1>About Me</h1>
             <p>I'm <a href="#about-dbma">dbma</a>, I am a sophomore at Purdue University majoring in Computer Science. As you probably already know, I like programming, linux, and gamedev so most of what you see on this site pertains to those things.</p>
             <h2>Programming</h2>
-            <p>My primary programming language that I use is C, sometimes C++. For C, I usually stick to C99 as it's widely supported on different platforms while still being mordern enough to program with, same with C++17. I have used other programming languages but I don't consider to be an expert in them, at least not at the same level of proficiency I have with C. Such languages I used are python, bash, lua, and html/css/js (as you can tell from this website I'm not really a webdev ;).</p>
+            <p>My primary programming language that I use is C, sometimes C++. For C, I usually stick to C99 as it's widely supported on different platforms while still being mordern enough to program with, same with C++17. I have used other programming languages but I don't consider to be an expert in them, at least not at the same level of proficiency I have with C. Such languages I used are python, bash, lua, and html/css/js.</p>
             <p>My main interest is in graphics programming, I have worked with OpenGL and Vulkan graphics API libraries as well as some other related libraries such as glfw, imgui, freetype, and stb_image. I also like making my own graphics libraries/frameworks using OpenGL and Vulkan as the basis for rendering. As a result, I have also developed an obsessive value on the importance of good library design and API architecture.</p>
             <h2>Art</h2>
-            <p>I have done 3D modeling before using blender, I also want to learn how to draw and do digital art in the future when I get around to it (I'm a bum). I also use lmms to create music and soundtracks from time to time.</p>
+            <p>I have done 3D modeling before using blender, I also want to learn how to draw and do digital art in the future when I get around to it. I also use lmms to create music and soundtracks from time to time.</p>
             <h1 id="about-dbma">About dbma</h1>
             <p>dbma is my alias username, my real name is Brian.</p>
             <p>Most of my online usernames will be of something similar and would usually contain the characters 'bma', either with characters prifixed (*bma) or postfixed (bma*) to the name.</p>
             <h1>About This Site</h1>
-            <p>This site was made with just html, css, and js. The inspiration for the window layout design came from my computer desktop. I use dwm (dynamic window manager), a tiling window manager that organizes windows in a master stack layout. So that was the inspiration for the theme of this site. I also got inspiration from imgui windows and how imgui windows structure their widgits. The font was also inspired from imgui's default font: ProggyClean.</p>
+            <p>This site was made with just html, css, and javascript.</p>
             <p>The site's source code can be found <a href="https://github.com/bmazx/dbmaindex">here</a>.</p>
-        </window-box>
+        </div>
     </div>
 </div>
 <script src="scripts.js"></script>

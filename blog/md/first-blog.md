@@ -14,3 +14,49 @@ I made this website primarly as a basis for the things, projects, or opinions I 
 This website was purley built with just html, css, and js. Nodejs/npm is also used but is only for developer tools rather than being integrated into the website and required to run it. I chose html/css/js over other frameworks such as React because it was the most simple and easy to start with. I also had a little bit of prior experience using html so I didn't have incentive to learn any new frameworks in the first place.
 
 Anyways, as of writing this post, this website isn't finished and it's pretty bland and empty right now so I will be thinking of new things I can add to my website later.
+
+---
+
+# Blog Style Check:
+
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
+
+Paragraph text
+
+_italic text_
+
+**Bold text**
+
+[link](https://example.com)
+
+Blockquote:
+> Why is a school teacher in space?
+
+Ordered List:
+1. first item
+2. second item
+3. third item
+
+Unordered List:
+- first point
+- second point
+- third point
+
+text with `inline code`.
+
+```c
+#include <stdio.h>
+
+int main(int argc, char **argv) {
+    printf("hello world\n");
+    return 0;
+}
+
+```
+
+![image](/images/dbmaindex.png)
