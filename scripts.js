@@ -62,18 +62,21 @@ function displayProject(card) {
 
 // index ----------------------------------------
 
+const splashText = "O(2n)"
+
 if (document.body.id === "index") {
-    const mainTitle = document.getElementById("main-title");
-    const titleSubtext = document.getElementById("main-title-subtext");
-    mainTitle.addEventListener("click", () => {
-        sessionStorage.setItem("titleClicked", "false");
+    document.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            sessionStorage.setItem("titleClicked", "false");
+        });
     });
 
+    const titleSubtext = document.getElementById("main-title-subtext");
     const titleClicked = sessionStorage.getItem("titleClicked");
-    if (titleClicked !== null && titleClicked === "false") {
+    if (titleClicked === "false") {
         const num = Math.floor(Math.random() * 10);
         if (num == 0) {
-            titleSubtext.textContent = "read my books";
+            titleSubtext.textContent = splashText;
         }
     }
 

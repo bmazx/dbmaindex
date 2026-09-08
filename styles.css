@@ -271,6 +271,7 @@ hr {
     font-size: 1rem;
     background-color: var(--bg-color2);
     padding: 0.1rem;
+    border-radius: 4px;
 }
 
 .blog-content pre:has(code) {
