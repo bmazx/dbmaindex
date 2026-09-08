@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+
+<channel>
+    <title>dbmaindex</title>
+    <link>https://dbmaindex.org</link>
+    <description>dbma's personal website</description>
+
+    <item>
+        <title>Bump website version to v2.1</title>
+        <link>https://dbmaindex.org</link>
+        <description>add rss xml file</description>
+    </item>
+</channel>
+
+</rss>
