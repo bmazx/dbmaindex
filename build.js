@@ -8,7 +8,7 @@ import { marked } from "marked";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BLOG_DIR_NAME = "blog"
+const BLOG_DIR_NAME = "blogs"
 const POSTS_DIR = path.join(__dirname, BLOG_DIR_NAME, "md");
 const OUTPUT_DIR = path.join(__dirname, BLOG_DIR_NAME);
 const TEMPLATE_POST_PATH = path.join(__dirname, "templates", "post.html");

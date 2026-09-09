@@ -5,7 +5,11 @@
     <title>dbmaindex</title>
     <link>https://dbmaindex.org</link>
     <description>dbma's personal website</description>
-
+    <item>
+        <title>New Project: hcjson</title>
+        <link>https://dbmaindex.org/projects</link>
+        <description>add new project: hcjson for reading and writing json in C</description>
+    </item>
     <item>
         <title>Bump website version to v2.1</title>
         <link>https://dbmaindex.org</link>
