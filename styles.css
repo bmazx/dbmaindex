@@ -119,14 +119,14 @@ hr {
     flex: 0.2 1 200px;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .side-nav-links {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 8px;
+    gap: 4px;
 }
 
 .header a,
@@ -153,6 +153,35 @@ hr {
 
 .side-nav-socials-icon:hover {
     fill: var(--color-green);
+}
+
+.side-nav-phack-webring {
+    display: flex;
+    gap: 8px;
+}
+
+.side-nav-phack-logo {
+    fill: var(--fg-color);
+    width: 1.1rem;
+    height: 1.1rem;
+    transition: 0.2s;
+}
+
+.side-nav-phack-logo:hover {
+    fill: var(--color-yellow);
+}
+
+.side-nav-phack-webring a {
+    text-decoration: none;
+    color: var(--fg-color);
+}
+
+.side-nav-phack-arrow {
+    color: var(--fg-color);
+}
+
+.side-nav-phack-arrow:hover {
+    color: var(--color-yellow);
 }
 
 .main-content {

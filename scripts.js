@@ -62,7 +62,7 @@ function displayProject(card) {
 
 // index ----------------------------------------
 
-const splashText = "O(2n)"
+const splashText = "claim your bones"
 
 if (document.body.id === "index") {
     document.querySelectorAll("a").forEach((link) => {
