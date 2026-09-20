@@ -25,6 +25,16 @@ function formatDate(date) {
     return String(date);
 }
 
+async function removeHtmlFiles(dir) {
+    const files = await fs.readdir(dir);
+
+    await Promise.all(
+        files
+        .filter(file => file.endsWith(".html"))
+        .map(file => fs.unlink(path.join(dir, file)))
+    );
+}
+
 function slugify(text) {
     return text
         .toString()
@@ -48,7 +58,7 @@ function createBlogCard(link, date, title) {
     return `
         <a href="${link}" class="blog-card">
             <h3><b>${date}</b></h3>
-            <h2>${title}</h2>
+            <h3>${title}</h3>
         </a>
     `;
 }
@@ -142,6 +152,8 @@ async function buildBlog() {
 async function buildPosts() {
     console.log("Building posts...");
 
+    removeHtmlFiles("./blogs");
+
     await fs.mkdir(OUTPUT_DIR, { recursive: true });
     const files = await fs.readdir(POSTS_DIR);
     const markdownFiles = files.filter(
@@ -155,6 +167,10 @@ async function buildPosts() {
         const markdown = await fs.readFile(inputPath, "utf8");
         const { data, content } = matter(markdown);
         const htmlContent = marked.parse(content);
+
+        if (data.draft) {
+            continue;
+        }
 
         // get content metadata
         const filename = path.basename(file, path.extname(file));

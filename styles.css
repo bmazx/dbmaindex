@@ -178,6 +178,7 @@ hr {
 
 .side-nav-phack-arrow {
     color: var(--fg-color);
+    transition: 0.2s;
 }
 
 .side-nav-phack-arrow:hover {

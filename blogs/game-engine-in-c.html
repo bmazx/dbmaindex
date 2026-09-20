@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Switching From C++ to C For My Game Engine | blog - dbmaindex</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="Building a game engine in C moving from C++ | blog - dbmaindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../images/dbmaindex.png">
+</head>
+<body>
+<div class="header">
+    <div class="workspaces">
+        <a href="../index.html">dbmaindex</a>
+        <a href="../blog.html">Blog</a>
+    </div>
+    <div class="status">
+        <button id="status-toggle-font" class="status-button" type="button"><svg class="status-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" version="1.1" fill="#000000"><title>toggle font readability</title><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:currentColor;stroke:none;" d="M 98,96 C 91,96 90,95 85,83 L 51,2 48,2 19,73 C 10,94 8.3,96 1.7,96 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 30,62 46,22 62,62 30,62"></path> <path style="fill:currentColor;stroke:none;" d="M 97,95 C 90,95 89,94 84,82 L 50,1 47,1 18,72 C 9,93 7.3,95 0.7,95 l 0,3 27.3,0 0,-3 c -6,0 -9,-1 -9,-5 0,-2 0,-5 1,-7 l 6,-16 37,0 5,13 c 2,5 3,9 3,11 0,3 -2,4 -10,4 l 0,3 36,0 0,-3 M 29,61 45,21 61,61 29,61"></path> </g></svg></button>
+        <a class="status-button" href="/rss.xml"><svg class="status-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg></a>
+        <p id="date">status</p>
+    </div>
+</div>
+<div class="post-viewport">
+    <div class="blog-content">
+        <h1>Switching From C++ to C For My Game Engine</h1>
+        <p>2026-09-19</p>
+        <p>As you may have noticed, I am currently building a game engine in C99... well more like a game framework or renderer hardware interface (RHI) instead. When you hear the term &#39;game engine&#39; you probably might be thinking of complete applications with fully in built editors and multiple component systems for moving and manipulating game assets in the scene. My game engine on the other hand does not have any sort of editor GUI interface, nor does it have any plans to implement one, instead you would need to call API function calls to render scenes. This is more akin to other game frameworks like sfml and raylib.</p>
+<p>This time, I will only be discussing the transition of my engine from C++ to C.</p>
+<h2>What? Why?</h2>
+<p>Now you are probably wondering why I would do this? Why would I move from C++ which has a lot more useful and convenient features and switch to just plain old boring C. These are valid questions, most game engines and also the entire game industry in general regards C++ as the number one go-to for writing video games and game engines.</p>
+<p>First, let&#39;s discuss the way I write and use C++. If you don&#39;t know, C++ is a multiparadigm language meaning you can write C++ code that is either completely object oriented (OOP) or procedural. I use the latter form so this means I&#39;m mostly not using any OOP in my code at all. And what ends up happening is that I write C++ code that looks a lot similar to C with only a few C++ aspects such as namespaces or some C++ features like std::vector.</p>
+<p>I use this paradigm because there are some disadvantages with using OOP or some of the more advanced features in the standard library. This is mostly due to the way data containers work in the standard library. For example most data containers such as std::list or std::unordered_set allocate memory internally using new and delete. This is alright for general use case, but in the world of game development, this is especially an annoying issue since it&#39;s a bit harder to control where these data containers are allocating memory from. Of course you might be able to do something like overriding the new operator to redirect memory allocations to custom allocators, but this is a little janky as it&#39;s applied globally and so every allocation made throughout the entire program will go through the overrided function instead even if you don&#39;t need every alloc to be.</p>
+<p>There is another way to redirect allocations from data containers which is done through the template parameters of the data container, but this is a bit tedious as well since I have to add an extra parameter to the template for each data container I declare.</p>
+<p>Another thing that I have come to realize is that I tend to always write C-styled C++ when using C++ when building the earlier versions of my game engine.This isn&#39;t really anything special, in fact this C-styled C++ is actually a popular coding styled within the gaming industry as well as the embedded programming.</p>
+<p>The point is that sometimes simpler is better, and in this case C or C-styled C++ is just way better for understanding code and readability especially for a game engine. A pretty well known example of this are the jokes on the horrors of template meta-programming in C++ or the weird and convoluted ways you can use operator overloading on data structures. Contrast this with C-styled programming and suddenly a lot of things become more simpler to understand and read. It may take more work setting things up, but the payoff is that code is much more readable and you can actually tell what the code is doing without any hidden implementation details.</p>
+<p>So is this why I moved to C? Well this was not the main reason. I&#39;ll even say that if it weren&#39;t for the other reasons to switch, I would have wanted to stay with C++ due to just these small features such as namespaces.</p>
+<h2>The ABI</h2>
+<p>Probably the bigger reason I wanted to switch away from C++ to C was due to the unappealing state of C++&#39;s ABI. The ABI, or Application Binary Interface, is this construct at the architectural low-level. It&#39;s purpose basically allows code compiled in one language to be used in another through the interface. For example let&#39;s say I have a function defined in C with the signature <code>int addNums(int a, int b);</code>, then when the C code is compiled and turned into a library, other programming languages and link the library with their code and use this function if they define the correct function signature that corresponds to the function.</p>
+<p>So the problem is that C++ doesn&#39;t really have a defined ABI which means you can&#39;t really have any complex data types in the function signatures you want to export in your library such as, <code>std::vector&lt;int&gt; getSomeData(const std::string&amp; str, int n);</code>. In this C++ function signature, there are a few problems, there is no standard ABI to define how a <code>std::vector</code> might be translated to other languages, or even <code>const std::string&amp;</code> which is a const reference. In general, you would have to use primitive data types like ints and floats to support ABI and this can be done in C++, but that would also mean you would have to cut everything from the C++ STL such as data containers and even your own classes that have have their own inner logic if you want to include them in your library API.</p>
+<h2>Fin</h2>
+<p>So at this point, I was really pretty much writing C already in C++, and after I wanted to support ABI for interface support between other languages, I decided to just switch to C. The transition itself wasn&#39;t really that hard since a lot of the code was already written in C-styled code.</p>
+<p>That being said, this does not mean I have cut C++ entirely from the engine, just that the core parts of my engine are written in C. I&#39;m still planning to include C++ but only for external use like in examples since it is more convenient to setup everything in C++ such as using std::vector and std::string.</p>
+
+    </div>
+</div>
+<script src="../scripts.js"></script>
+</body>
+</html>
