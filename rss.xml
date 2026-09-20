@@ -6,6 +6,11 @@
     <link>https://dbmaindex.org</link>
     <description>dbma's personal website</description>
     <item>
+        <title>New Blog Post: Switching From C++ to C For My Game Engine</title>
+        <link>https://dbmaindex.org/blog/game-engine-in-c.html</link>
+        <description>add new blog post: Building a game engine in C moving from C++</description>
+    </item>
+    <item>
         <title>New Project: hcjson</title>
         <link>https://dbmaindex.org/projects</link>
         <description>add new project: hcjson for reading and writing json in C</description>
