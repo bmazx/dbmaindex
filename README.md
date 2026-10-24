@@ -1,6 +1,6 @@
 # dbmaindex
 
-My personal website to host my stuff.
+My personal [website](https://dbmaindex.org/index.html) to host my stuff.
 
 This website does not require any external dependencies to run.
 
